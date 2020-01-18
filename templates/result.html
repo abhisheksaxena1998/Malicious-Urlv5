@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% block title %}Result Page{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 1rem auto 10rem auto;">
+            {% if mal %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Legitimate Url</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12" style="margin: 1rem auto 0 auto;">
+                        <!-- Card -->
+                        <div class="card">
+            
+                            <!-- Card image -->
+                            <div class="view overlay">
+                                <img class="card-img-top"
+                                    src="/static/safe.jpg"
+                                    alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+            
+                            <!-- Card content -->
+                            <div class="card-body">
+            
+                                <!-- Text -->
+                                <p class="card-text"><center><strong><font color="green">Link : {{text}}</font></strong> </center> </p>
+                            </div>
+            
+                        </div>
+                        <!-- Card -->
+                    </div>
+                </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Malicious Url</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12" style="margin: 1rem auto 0 auto;">
+                        <!-- Card -->
+                        <div class="card">
+            
+                            <!-- Card image -->
+                            <div class="view overlay">
+                                <img class="card-img-top"
+                                    src="/static/fake.jpg"
+                                    alt="Card image cap">
+                                <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+            
+                            <!-- Card content -->
+                            <div class="card-body">
+            
+                                <!-- Text -->
+                                <p class="card-text"><center><strong><font color="red">Link : {{text}}</font></strong> </center> </p>
+                            </div>
+            
+                        </div>
+                        <!-- Card -->
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

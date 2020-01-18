@@ -1,0 +1,37 @@
+{% extends 'index.html' %}
+{% block title %}User FeedBack Form{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    {% if feedback %}
+    <div class="row" style="margin-top:1rem;">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>User FeedBack Saved</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <form method="GET" action="/saveuserfeedbackform" autocomplete="off" class="text-center border border-light p-5" style="margin-top: 1rem;">
+                <h1 class="display-6" style="margin: 0 auto;text-align: center;">User FeedBack Form</h1>
+                <div class="md-form">
+                    <input type="hidden" name="objid" class="md-text form-control" id="objid" value="{{objid}}" disabled>
+                </div>
+                <div class="md-form">
+                    <label for="usertitle">Subject Title</label>
+                    <input type="text" class="md-text form-control" id="usertitle" name="usertitle">
+                </div>
+                <div class="md-form">
+                    <label for="userdescription">Subject Description</label>
+                    <textarea class="md-textarea form-control" id="userdescription" rows="3" name="userdescription"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

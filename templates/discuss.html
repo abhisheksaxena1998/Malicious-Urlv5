@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block title %}Discuss{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 1rem;">
+    <div class="row">
+        <div class="col-md-4" style="margin: 0 auto;">
+            {% for user in users %}
+            <!-- Card -->
+            <div class="card" style="1rem auto 1rem auto">
+
+                <!-- Card image -->
+
+                <!-- Card content -->
+                <div class="card-body">
+
+                    <!-- Title -->
+                    <h4 class="card-title">{{user.title}}</h4>
+                    <!-- Text -->
+                    <p class="card-text">{{user.description}}.</p>
+                    <!-- Button -->
+
+                </div>
+
+            </div>
+            <!-- Card -->
+            <hr>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block title %}DataBase{% endblock %}
+{% block content %}
+<div class="container-fluid" style="margin-top: 1rem;">
+    <div class="row">
+        <div class="col-md-12" style="margin: 0 auto;">
+            <ul class="list-group list-group-flush">
+                {% for url in urls %}
+                <li class="list-group-item">{{url.id}}</li>
+                <li class="list-group-item">{{url.link}}</li>
+                <li class="list-group-item">{{url.result}}</li>
+                <li class="list-group-item">{{url.created_at}}</li>
+                <hr>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
