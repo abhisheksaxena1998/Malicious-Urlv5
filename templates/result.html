@@ -1,80 +1,265 @@
-{% extends 'index.html' %}
-{% block title %}Result Page{% endblock %}
-{% block content %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6" style="margin: 1rem auto 10rem auto;">
-            {% if mal %}
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Legitimate Url</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12" style="margin: 1rem auto 0 auto;">
-                        <!-- Card -->
-                        <div class="card">
-            
-                            <!-- Card image -->
-                            <div class="view overlay">
-                                <img class="card-img-top"
-                                    src="/static/safe.jpg"
-                                    alt="Card image cap">
-                                <a href="#!">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-            
-                            <!-- Card content -->
-                            <div class="card-body">
-            
-                                <!-- Text -->
-                                <p class="card-text"><center><strong><font color="green">Link : {{text}}</font></strong> </center> </p>
-                            </div>
-            
-                        </div>
-                        <!-- Card -->
-                    </div>
-                </div>
-            {% else %}
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Malicious Url</strong>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12" style="margin: 1rem auto 0 auto;">
-                        <!-- Card -->
-                        <div class="card">
-            
-                            <!-- Card image -->
-                            <div class="view overlay">
-                                <img class="card-img-top"
-                                    src="/static/fake.jpg"
-                                    alt="Card image cap">
-                                <a href="#!">
-                                    <div class="mask rgba-white-slight"></div>
-                                </a>
-                            </div>
-            
-                            <!-- Card content -->
-                            <div class="card-body">
-            
-                                <!-- Text -->
-                                <p class="card-text"><center><strong><font color="red">Link : {{text}}</font></strong> </center> </p>
-                            </div>
-            
-                        </div>
-                        <!-- Card -->
-                    </div>
-                </div>
-            {% endif %}
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Malicious Url Analysis</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet" />
+    <link rel="icon" href="https://c8.alamy.com/comp/HYDF7N/malware-spyware-symbol-HYDF7N.jpg" type="image/png">
+
+    <!-- Custom Stylesheet -->
+</head>
+
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light white sticky-top">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="/"><i class="fad fa-sack-dollar"  style="margin-right:1 rem;"></i>Malicious Url Analysis</a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="basicExampleNav">
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'geturlhistory' %}">Our Database</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'getuserfeedbackform' %}">User FeedBack</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'discuss' %}">Discuss Channel</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about">About Our App</a>
+                </li>
+              </ul>
+            <!-- Links -->
+        </div>
+        <!-- Collapsible content -->
+    </nav>
+    <!--/.Navbar-->
+
+
+    
+        <br class="row">
+            <div class="col-md-6" style="margin: 1rem auto 0 auto;">
+                {% if mal %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Legitimate Url</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12" style="margin: 1rem auto 0 auto;">
+                            <!-- Card -->
+                            <div class="card">
+                
+                                <!-- Card image -->
+                                <div class="view overlay">
+                                    <img class="card-img-top"
+                                        src="/static/safe.jpg"
+                                        alt="Card image cap">
+                                    <a href="#!">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                
+                                <!-- Card content -->
+                                <div class="card-body">
+                
+                                    <!-- Text -->
+                                    <p class="card-text"><center><strong><font color="green">Link : {{text}}</font></strong> </center> </p>
+                                </div>
+                
+                            </div>
+                            <!-- Card -->
+                        </div>
+                    </div>
+                {% else %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Malicious Url</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12" style="margin: 1rem auto 0 auto;">
+                            <!-- Card -->
+                            <div class="card">
+                
+                                <!-- Card image -->
+                                <div class="view overlay">
+                                    <img class="card-img-top"
+                                        src="/static/fake.jpg"
+                                        alt="Card image cap">
+                                    <a href="#!">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                
+                                <!-- Card content -->
+                                <div class="card-body">
+                
+                                    <!-- Text -->
+                                    <p class="card-text"><center><strong><font color="red">Link : {{text}}</font></strong> </center> </p>
+                                </div>
+                
+                            </div>
+                            <!-- Card -->
+                        </div>
+                    </div>
+
+
+                {% endif %}
+            </div>
         </div>
     </div>
-</div>
-{% endblock %}
+
+
+
+</br></br>
+
+    <div>
+        <table class="table table-striped w-auto" align="center">
+            <thead>
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col">Name</th>
+                <th scope="col">Organisation</th>
+                <th scope="col">Address</th>
+                <th scope="col">City</th>
+                <th scope="col">State</th>
+                <th scope="col">Zip</th>
+                <th scope="col">Country</th>
+                <th scope="col">Emails</th>
+                <th scope="col">Domain</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{name}}</td>
+                <td>{{org}}</td>
+                <td>{{add}}</td>
+                <td>{{city}}</td>
+                <td>{{state}}</td>
+                <td>{{ziip}}</td>
+                <td>{{country}}</td>
+                <td>{{emails}}</td>
+                <td>{{dom}}</td>
+
+              </tr>
+              
+            </tbody>
+          </table>
+    
+    </div>
+
+</br></br>
+
+<div>
+    <table class="table table-striped w-auto" align="center">
+        <thead>
+          <tr>
+            <th scope="col"></th>                     
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Alexa Rankings</th>
+            <td>{{rank}}</td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+</div>    
+
+</br></br>    
+
+    <!-- Footer -->
+    <footer class="page-footer font-small special-color-dark pt-4">
+
+        <!-- Footer Elements -->
+        <div class="container">
+
+            <!-- Social buttons -->
+            <ul class="list-unstyled list-inline text-center">
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-fb mx-1">
+                        <i class="fab fa-facebook-f"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-tw mx-1">
+                        <i class="fab fa-twitter"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-gplus mx-1">
+                        <i class="fab fa-google-plus-g"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-li mx-1">
+                        <i class="fab fa-linkedin-in"> </i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="btn-floating btn-dribbble mx-1">
+                        <i class="fab fa-dribbble"> </i>
+                    </a>
+                </li>
+            </ul>
+            <!-- Social buttons -->
+
+        </div>
+        <!-- Footer Elements -->
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">
+            <a href="https://mdbootstrap.com/" style="color: white;font-weight: bold;"></a>
+            <br />
+            <a href="http://www.freepik.com" style="color: white;font-weight: bold;"></a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+</body>
+
+</html>
