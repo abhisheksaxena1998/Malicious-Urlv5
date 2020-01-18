@@ -85,6 +85,7 @@ def result(request):
         #nm=request.GET['url']
     
         text=request.GET['url']
+        
         if text.startswith('https://') or text.startswith('http://'):
 
             if len(text)<=9:
@@ -258,7 +259,10 @@ def result(request):
 
             tags = list(filter(lambda x: x!="Not Found",tags))
             tags.append(text)
-    
+            obj = Url()
+            obj.link = text
+            obj.result = te 
+            obj.save()
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
                     'add':add,
