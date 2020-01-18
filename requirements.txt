@@ -86,3 +86,4 @@ widgetsnbextension>=3.5.1
 xlrd>=1.2.0
 youtube-transcript-api>=0.2.1
 zipp>=0.6.0
+xmltodict

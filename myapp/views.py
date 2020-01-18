@@ -5,6 +5,7 @@ def warn(*args, **kwargs):
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.db.models import Q
 from .models import *
 
 
@@ -253,6 +254,11 @@ def result(request):
             
             print (dom,rank)
                      
+            tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
+
+            tags = list(filter(lambda x: x!="Not Found",tags))
+            tags.append(text)
+    
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
                     'add':add,
@@ -260,7 +266,7 @@ def result(request):
                     'state':state,
                     'ziip':ziip,
                     'country':country,'emails':emails,
-                    'dom':dom,'rank':rank})
+                    'dom':dom,'rank':rank,"tags":tags})
         else:
             return render(request,'404.html')  
         """except:
@@ -426,7 +432,15 @@ def discuss(request):
     except:
         return render(request,'404.html')
 
-
+def search(request):
+    try:
+        query = request.GET['search']
+        mydict = {
+            "urls" : Url.objects.all().filter(Q(link__contains=query) | Q(result__contains=query) | Q(created_at__contains=query))
+        }
+        return render(request,'list.html',context=mydict)
+    except:
+        return render(request,'404.html')
 
 
 			

@@ -1,19 +1,37 @@
 {% extends 'index.html' %}
 {% block title %}DataBase{% endblock %}
 {% block content %}
+
 <div class="container-fluid" style="margin-top: 1rem;">
     <div class="row">
-        <div class="col-md-12" style="margin: 0 auto;">
-            <ul class="list-group list-group-flush">
-                {% for url in urls %}
-                <li class="list-group-item">{{url.id}}</li>
-                <li class="list-group-item">{{url.link}}</li>
-                <li class="list-group-item">{{url.result}}</li>
-                <li class="list-group-item">{{url.created_at}}</li>
-                <hr>
-                {% endfor %}
-            </ul>
-
+        <div class="col-md-12">
+            <form action="{% url 'search' %}" method="GET">
+            <input type="text" id="search" name="search" class="form-control mb-4" placeholder="Search" autocomplete="off">
+        </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 table-responsive text-nowrap" style="margin: 0 auto;">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Url</th>
+                    <th scope="col">Result</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for url in urls %}
+                  <tr>
+                    <th scope="row">{{url.id}}</th>
+                    <td>{{url.link}}</td>
+                    <td>{{url.result}}</td>
+                    <td>{{url.created_at}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
         </div>
     </div>
 </div>
