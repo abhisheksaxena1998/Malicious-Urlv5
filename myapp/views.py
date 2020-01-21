@@ -408,7 +408,12 @@ def api(request):
             "malware" : mal,
             "datetime" : str(datetime.datetime.now())
         }
-        return JsonResponse(mydict)
+        response =  JsonResponse(mydict)
+        response["Access-Control-Allow-Origin"] = "*"
+        response["Access-Control-Allow-Methods"] = "GET, OPTIONS"
+        response["Access-Control-Max-Age"] = "1000"
+        response["Access-Control-Allow-Headers"] = "X-Requested-With, Content-Type"
+        return response
     except:
         return render(request,'404.html')                      
 
