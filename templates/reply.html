@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+{% block title %}Reply FeedBack Form{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <form method="GET" action="/savereply" autocomplete="off" class="text-center border border-light p-5" style="margin-top: 1rem;">
+                <h1 class="display-6" style="margin: 0 auto;text-align: center;">Reply FeedBack Form</h1>
+                <div class="md-form">
+                    <input type="hidden" name="replyid" class="md-text form-control" id="{{replyid}}" value="{{replyid}}" readonly/>
+                </div>/
+                <div class="md-form">
+                    <label for="usertitle">Subject Title *Non Editable</label>
+                    <input type="text" class="md-text form-control" id="usertitle" name="usertitle" value="{{title}}" readonly/>
+                </div>
+                <div class="md-form">
+                    <label for="userdescription">Subject Description *Non Editable</label>
+                    <textarea class="md-textarea form-control" id="userdescription" rows="3" name="userdescription"readonly >{{description}}</textarea>
+                </div>
+                <div class="md-form">
+                    <label for="userdescription">Reply</label>
+                    <textarea class="md-textarea form-control" id="userreply" rows="3" name="userreply"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin: 0 auto;display: block;">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

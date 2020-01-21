@@ -10,6 +10,10 @@ urlpatterns = [
     path('result',views.result,name='result'),
     path('about',views.about,name='about'),
     path('geturlhistory',views.geturlhistory,name="geturlhistory"),
-    path('discuss',views.discuss,name="discuss")
+    path('discuss',views.discuss,name="discuss"),
+    path('reply/<int:replyid>',views.replyform,name="reply"),
+    path('savereply',views.savereply,name="reply"),
+    path('searchdiscuss',views.searchdiscuss,name="searchdiscuss"),
+
 ]
 
