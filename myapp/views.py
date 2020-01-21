@@ -49,27 +49,14 @@ from lxml import html
 from json import dump, loads
 from requests import get
 import json
-import csv
 from re import sub
 from dateutil import parser as dateparser
 from time import sleep
 from django.http import HttpResponse
 from django.shortcuts import render
 import os
-import seaborn as sns
-import matplotlib.pyplot as plt
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.metrics import classification_report
-from sklearn.feature_extraction.text import CountVectorizer, \
-    TfidfVectorizer
-from sklearn.metrics import accuracy_score, confusion_matrix
 import pandas as pd
-from sklearn.model_selection import train_test_split
 import numpy as np
-from sklearn.svm import LinearSVC
-from sklearn.linear_model import LogisticRegression
-from sklearn.neural_network import MLPClassifier
 import pickle
 from sklearn.externals import joblib
 
