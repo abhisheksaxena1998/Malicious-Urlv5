@@ -233,6 +233,10 @@ def result(request):
                 mal = True
             else:
                 mal = False      
+
+            print (name,org,add,city,state,ziip,country,emails,dom)
+
+
             from json.encoder import JSONEncoder
             final_entity = { "predicted_argument": [int(arg[0])]}
             # directly called encode method of JSON
