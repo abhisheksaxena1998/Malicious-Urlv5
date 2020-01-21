@@ -62,8 +62,6 @@ from sklearn.externals import joblib
 
 import whois
 import datetime
-sns.set_style('darkgrid', {'axes.facecolor': '.3'})
-from youtube_transcript_api import YouTubeTranscriptApi
 
 
 def result(request):
