@@ -496,5 +496,48 @@ def search(request):
     except:
         return render(request,'404.html')
 
+def replyform(request,replyid):
+    try:
+        obj = UserFeedBack.objects.get(id=replyid)
+        mydict = {
+        "replyid" : obj.id,
+        "title" : obj.title,
+        "description" : obj.description
+        }
+        return render(request,'reply.html',context=mydict)
+    except:
+        return render(request,'404.html')
+
+def savereply(request):
+    try:
+        print("debug start")
+        replyid = request.GET['replyid']
+        print(replyid)
+        obj = UserFeedBack.objects.get(id=replyid)
+        obj.replied = True
+        obj.reply = request.GET['userreply']
+        obj.save()
+        mydict = {
+            "reply" : True,
+            "users" : UserFeedBack.objects.all()
+        }
+        print("debug end")
+        return render(request,'discuss.html',context=mydict)
+
+    except:
+        return render(request,'404.html')
+
+def searchdiscuss(request):
+    try:
+        query = request.GET['search']
+        mydict = {
+            "users" : UserFeedBack.objects.all().filter(Q(title__contains=query) | Q(description__contains=query) | Q(created_at__contains=query)
+            |  Q(replied__contains=query) | Q(reply__contains=query)
+            )
+        }
+        return render(request,'discuss.html',context=mydict)
+    except:
+        return render(request,'404.html')
+
 
 			

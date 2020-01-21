@@ -3,6 +3,26 @@
 {% block content %}
 <div class="container-fluid" style="margin-top: 1rem;">
     <div class="row">
+        <div class="col-md-6" style="margin: 0 auto 1rem auto;">
+            <form action="{% url 'searchdiscuss' %}" method="GET">
+            <input type="text" id="search" name="search" class="form-control mb-4" placeholder="Search" autocomplete="off">
+            <button type="submit" class="btn btn-primary" style="display: block;margin: 0 auto;">Search</button>
+        </form>
+        </div>
+    </div>
+    {% if reply %}
+    <div class="row" style="margin-top:1rem;">
+        <div class="col-md-6" style="margin: 0 auto;">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>User Reply Saved</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    <div class="row">
         <div class="col-md-4" style="margin: 0 auto;">
             {% for user in users %}
             <!-- Card -->
@@ -12,13 +32,18 @@
 
                 <!-- Card content -->
                 <div class="card-body">
-
                     <!-- Title -->
                     <h4 class="card-title">{{user.title}}</h4>
                     <!-- Text -->
                     <p class="card-text">{{user.description}}.</p>
                     <!-- Button -->
-
+                    <p class="card-text">{{user.created_at}}.</p>
+                    {% if user.replied == False %}
+                    <a href="/reply/{{user.id}}" class="badge badge-danger" style="margin: 0 auto;">Reply Query</a>
+                    {% else %}
+                    <a href="#" class="badge badge-success" style="margin: 0 auto;">Query Replied</a>
+                    <p class="card-text">{{user.reply}}.</p>
+                    {% endif %}
                 </div>
 
             </div>
