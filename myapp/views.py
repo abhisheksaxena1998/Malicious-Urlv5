@@ -494,6 +494,7 @@ def discuss(request):
 def search(request):
     try:
         query = request.GET['search']
+        query = str(query).lower()
         mydict = {
             "urls" : Url.objects.all().filter(Q(link__contains=query) | Q(result__contains=query) | Q(created_at__contains=query))
         }
@@ -535,6 +536,7 @@ def savereply(request):
 def searchdiscuss(request):
     try:
         query = request.GET['search']
+        query = str(query).lower()
         mydict = {
             "users" : UserFeedBack.objects.all().filter(Q(title__contains=query) | Q(description__contains=query) | Q(created_at__contains=query)
             |  Q(replied__contains=query) | Q(reply__contains=query)
