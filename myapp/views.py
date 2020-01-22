@@ -190,36 +190,28 @@ def result(request):
             url=text
             
             #print (res)
-            try:
-                res=whois.whois(url)
-                name=res["name"]
-                print (res["name"])
-                org=res['org']
-                print (res['org'])
-                add=res['address']
-                print (res['address'])
-                city=res['city']
-                print (res['city'])
-                state=res['state']
-                print (res['state'])
-                ziip=res['zipcode']
-                print (res['zipcode'])
-                country=res['country']
-                print (res['country'])
-                emails=res["emails"][0]   
-                print (res["emails"][0])
-                dom=res['domain_name']
-                print (res['domain_name'])                
-            except:
-                name="Not Found"
-                org="Not Found"
-                add="Not Found"
-                city="Not Found"
-                state="Not Found"
-                ziip="Not Found"
-                country="Not Found"
-                emails="Not Found"   
-                dom="Not Found"
+            #try:
+            res=whois.whois(url)
+            name=res["name"]
+            print (res["name"])
+            org=res['org']
+            print (res['org'])
+            add=res['address']
+            print (res['address'])
+            city=res['city']
+            print (res['city'])
+            state=res['state']
+            print (res['state'])
+            ziip=res['zipcode']
+            print (res['zipcode'])
+            country=res['country']
+            print (res['country'])
+            emails=res["emails"][0]   
+            print (res["emails"][0])
+            dom=res['domain_name']
+            print (res['domain_name'])                
+            #except:
+           
 
             if dom=="Not Found" and rank=="Not Indexed by Alexa" :
                 arg[0]=-1
