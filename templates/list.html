@@ -19,6 +19,14 @@
                     <th scope="col">Id</th>
                     <th scope="col">Url</th>
                     <th scope="col">Result</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Organisation</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Emails</th>
+                    <th scope="col">Alexa Rank</th>
                     <th scope="col">Date</th>
                   </tr>
                 </thead>
@@ -28,6 +36,14 @@
                     <th scope="row">{{url.id}}</th>
                     <td>{{url.link}}</td>
                     <td>{{url.result}}</td>
+                    <td>{{url.add}}</td>
+                    <td>{{url.org}}</td>
+                    <td>{{url.city}}</td>
+                    <td>{{url.state}}</td>
+                    <td>{{url.country}}</td>
+                    <td>{{url.dom}}</td>
+                    <td>{{url.emails}}</td>
+                    <td>{{url.rank}}</td>                    
                     <td>{{url.created_at}}</td>
                   </tr>
                   {% endfor %}

@@ -251,7 +251,16 @@ def result(request):
             tags.append(text)
             obj = Url()
             obj.link = text
+            obj.add = res['address']
+            obj.state = res['state']
+            obj.city = res['city']
+            #obj.ziip = res['zip_code']
             obj.result = te 
+            obj.country = res['country'] 
+            obj.emails = res['emails']
+            obj.dom = res['domain_name']
+            obj.org = res['org']
+            obj.rank = rank
             obj.save()
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
@@ -444,13 +453,26 @@ def api(request):
             
             print (dom,rank)
                      
-            tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
-
-            tags = list(filter(lambda x: x!="Not Found",tags))
-            tags.append(text)
+            res=whois.whois(url)
             obj = Url()
-            obj.link = text
-            obj.result = te 
+            obj.link=res["name"]
+            print (res["name"])
+            obj.org=res['org']
+            print (res['org'])
+            obj.add=res['address']
+            print (res['address'])
+            obj.city=res['city']
+            print (res['city'])
+            obj.state=res['state']
+            print (res['state'])
+            print (res['zipcode'])
+            obj.country=res['country']
+            print (res['country'])
+            obj.emails=res["emails"][0]   
+            print (res["emails"][0])
+            obj.dom=res['domain_name']
+            print (res['domain_name'])
+            obj.rank = rank
             obj.save()
 
         '''return render(request, 'result.html',
