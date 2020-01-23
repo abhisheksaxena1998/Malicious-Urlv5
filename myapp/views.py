@@ -249,19 +249,33 @@ def result(request):
 
             tags = list(filter(lambda x: x!="Not Found",tags))
             tags.append(text)
-            obj = Url()
-            obj.link = text
-            obj.add = res['address']
-            obj.state = res['state']
-            obj.city = res['city']
-            #obj.ziip = res['zip_code']
-            obj.result = te 
-            obj.country = res['country'] 
-            obj.emails = res['emails']
-            obj.dom = res['domain_name']
-            obj.org = res['org']
-            obj.rank = rank
-            obj.save()
+            try:
+                obj = Url()
+                obj.link = text
+                obj.add = res['address']
+                obj.state = res['state']
+                obj.city = res['city']
+                #obj.ziip = res['zip_code']
+                obj.result = te 
+                obj.country = res['country'] 
+                obj.emails = res['emails']
+                obj.dom = res['domain_name']
+                obj.org = res['org']
+                obj.rank = rank
+                obj.save()
+            except:
+                obj.add = "Not Found"
+                obj.state = "Not Found"
+                obj.city = "Not Found"
+                #obj.ziip = res['zip_code']
+                obj.result = te 
+                obj.country = "Not Found"
+                obj.emails = "Not Found"
+                obj.dom = "Not Found"
+                obj.org = "Not Found"
+                obj.rank = rank
+                obj.save()
+
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
                     'add':add,
