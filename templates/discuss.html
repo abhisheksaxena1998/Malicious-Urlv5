@@ -39,7 +39,7 @@
                     <!-- Button -->
                     <p class="card-text">{{user.created_at}}.</p>
                     {% if user.replied == False %}
-                    <a href="/reply/{{user.id}}" class="badge badge-danger" style="margin: 0 auto;">Reply Query</a>
+                    <a href="/reply/{{user.userid}}" class="badge badge-danger" style="margin: 0 auto;">Reply Query</a>
                     {% else %}
                     <a href="#" class="badge badge-success" style="margin: 0 auto;">Query Replied</a>
                     <p class="card-text">{{user.reply}}.</p>
