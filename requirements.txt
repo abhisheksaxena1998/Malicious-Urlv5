@@ -11,7 +11,7 @@ cymem>=2.0.2
 decorator>=4.4.1
 defusedxml>=0.6.0
 dj-database-url>=0.5.0
-Django==2.2.9
+Django>=2.2.9
 django-heroku>=0.3.1
 entrypoints>=0.3
 gunicorn>=20.0.4
@@ -46,7 +46,7 @@ pyparsing>=2.4.6
 pyrsistent>=0.15.5
 python-dateutil>=2.8.1
 pytz>=2019.3
-python-whois==0.7.2
+python-whois>=0.7.2
 pywinpty>=0.5.5
 pyzmq>=18.1.0
 qtconsole>=4.5.5
