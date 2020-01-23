@@ -174,7 +174,7 @@ def result(request):
                 print (thirt)    
             except:
                 thirt=-1 
-                rank="Not Indexed by Alexa"
+                rank=-1
                 print (rank)                  
 
 
@@ -222,7 +222,7 @@ def result(request):
                 dom="Not Found"
                 
 
-            if dom=="Not Found" and rank=="Not Indexed by Alexa" :
+            if dom=="Not Found" and rank==-1 :
                 arg[0]=-1
                 #phishing
 
