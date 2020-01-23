@@ -490,6 +490,7 @@ def api(request):
         return render(request,'404.html')                      
 
 def about(request):
+    #return HttpResponse("about")
     try:
         return render(request, 'about.html')
     except:
