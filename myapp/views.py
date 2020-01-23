@@ -268,7 +268,7 @@ def result(request):
                 obj.state = "Not Found"
                 obj.city = "Not Found"
                 #obj.ziip = res['zip_code']
-                obj.result = te 
+                ###########################obj.result = te 
                 obj.country = "Not Found"
                 obj.emails = "Not Found"
                 obj.dom = "Not Found"
