@@ -242,7 +242,8 @@ def result(request):
             final_entity = { "predicted_argument": [int(arg[0])]}
             # directly called encode method of JSON
             print (JSONEncoder().encode(final_entity)) 
-            
+            obj = Url()
+            obj.result = te 
             print (dom,rank)
                      
             tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
@@ -250,13 +251,13 @@ def result(request):
             tags = list(filter(lambda x: x!="Not Found",tags))
             tags.append(text)
             try:
-                obj = Url()
+                
                 obj.link = text
                 obj.add = res['address']
                 obj.state = res['state']
                 obj.city = res['city']
                 #obj.ziip = res['zip_code']
-                obj.result = te 
+                
                 obj.country = res['country'] 
                 obj.emails = res['emails']
                 obj.dom = res['domain_name']
