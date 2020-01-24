@@ -499,7 +499,8 @@ def api(request):
             "malware" : malstatus,
             "datetime" : str(datetime.datetime.now())
         }
-        return JsonResponse(mydict)
+        response = JsonResponse(mydict)
+        return response
     except:
         return render(request,'404.html')                      
 
