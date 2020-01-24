@@ -113,7 +113,6 @@ python-dateutil>=2.8.0
 python-docx>=0.8.10
 python-whois>=0.7.2
 pytz>=2019.3
-pywin32>=227
 pywinpty>=0.5.5
 pyzmq>=18.1.1
 qtconsole>=4.5.5
