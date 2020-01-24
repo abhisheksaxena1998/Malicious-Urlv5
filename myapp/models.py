@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class UserFeedBack(models.Model):
-    userid = models.AutoField(primary_key=True)
+    userid = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     description = models.TextField()
     reply = models.TextField()
@@ -10,7 +10,7 @@ class UserFeedBack(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 class Url(models.Model):
-    urlid = models.AutoField(primary_key=True)
+    urlid = models.IntegerField(primary_key=True)
     link = models.CharField(max_length=1000,null=True,default="Not Found")
     result = models.CharField(max_length=100,null=True,default="Not Found")
     add = models.CharField(max_length=1000,null=True,default="Not Found")
