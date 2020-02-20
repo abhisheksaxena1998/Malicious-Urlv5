@@ -1,5 +1,4 @@
 absl-py>=0.9.0
-amazon-review-scraper>=0.1.2
 astor>=0.8.1
 astroid>=2.3.3
 attrs>=19.3.0
