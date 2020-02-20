@@ -153,7 +153,7 @@ def result(request):
                     eleventhval=1
                 else:
                     eleventhval=-1
-                    var11="Domain age less than a year"
+                    var11="Domain ageworking  less than a year"
             except:
                 aburl=-1
                 varab="abnormal url"
@@ -403,16 +403,16 @@ def api(request):
                 data_tojson = json.loads(data)
                 url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
                 rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
-                print ("rank",rank)
+                #print ("rank",rank)
                 if rank<=100000:
                     thirt=1
                 else:
                     thirt=-1
-                print (thirt)    
+                #print (thirt)    
             except:
                 thirt=-1 
                 rank="Not Indexed by Alexa"
-                print (rank)                  
+                #print (rank)                  
 
 
 
@@ -422,7 +422,7 @@ def api(request):
             loaded_model = joblib.load(filename)
 
             arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
-            print (arg[0])
+            #print (arg[0])
             import whois
             url=text
             
@@ -430,23 +430,23 @@ def api(request):
             try:
                 res=whois.whois(url)
                 name=res["name"]
-                print (res["name"])
+                #print (res["name"])
                 org=res['org']
-                print (res['org'])
+                #print (res['org'])
                 add=res['address']
-                print (res['address'])
+                #print (res['address'])
                 city=res['city']
-                print (res['city'])
+                #print (res['city'])
                 state=res['state']
-                print (res['state'])
+                #print (res['state'])
                 ziip=res['zipcode']
-                print (res['zipcode'])
+                #print (res['zipcode'])
                 country=res['country']
-                print (res['country'])
+                #print (res['country'])
                 emails=res["emails"][0]   
-                print (res["emails"][0])
+                #print (res["emails"][0])
                 dom=res['domain_name']
-                print (res['domain_name'])                
+                #print (res['domain_name'])                
             except:
                 name="Not Found"
                 org="Not Found"
@@ -477,11 +477,11 @@ def api(request):
             from json.encoder import JSONEncoder
             final_entity = { "predicted_argument": [int(arg[0])]}
             # directly called encode method of JSON
-            print (JSONEncoder().encode(final_entity)) 
+            #print (JSONEncoder().encode(final_entity)) 
             
-            print (dom,rank)
+            #print (dom,rank)
                      
-            res=whois.whois(url)
+            """res=whois.whois(url)
             obj = Url()
             obj.link=res["name"]
             print (res["name"])
@@ -502,7 +502,7 @@ def api(request):
             print (res['domain_name'])
             obj.rank = rank
             obj.save()
-
+"""
         '''return render(request, 'result.html',
                   {'result': 'Real-time analysis successfull',
                   'f2': te, 'mal': mal,'text':text})'''
