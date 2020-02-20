@@ -72,6 +72,13 @@ def result(request):
         text=request.GET['url']
         
         if text.startswith('https://') or text.startswith('http://'):
+            var13="Not Applicable"
+            varab="Not Applicable"
+            var11="Not Applicable"
+            var10="Not Applicable"
+            var5="Not Applicable"
+            var4="Not Applicable"
+            var3="Not Applicable"
 
             if len(text)<=9:
                 return render(request,'errorpage.html')
@@ -87,16 +94,19 @@ def result(request):
                 secval=1  
             if "@" in text:
                 thirdval=-1
+                var3="@detected"
             else:
-                thirdval=1    
+                thirdval=1       
             k=text.count("//")          
             if k>1:
                 fourthval=-1
+                var4="More Redirects"
             else:
                 fourthval=1
                 
             if "-" in text:
                 fifthval=-1
+                var5="Prefix-Suffix detected"
             else:
                 fifthval=1         
             if "https" in text:
@@ -122,6 +132,7 @@ def result(request):
             re=text.count("//")          
             if re>3:
                 tenthval=-1
+                var10="redirects more than 2"
             else:
                 tenthval=1    
 
@@ -146,9 +157,12 @@ def result(request):
                     eleventhval=1
                 else:
                     eleventhval=-1
+                    var11="Domain age less than a year"
             except:
                 aburl=-1
+                varab="abnormal url"
                 eleventhval=-1   
+                
 
             if aburl==-1:
                 twelthval=-1
@@ -171,10 +185,12 @@ def result(request):
                     thirt=1
                 else:
                     thirt=-1
+                    var13="Larger index in alexa database"
                 print (thirt)    
             except:
                 thirt=-1 
                 rank=-1
+                var13="Larger index in alexa database"
                 print (rank)                  
 
 
@@ -276,6 +292,7 @@ def result(request):
                 obj.org = "Not Found"
                 obj.rank = rank
                 obj.save()
+            print (var13,varab,var11,var10,var5,var4,var3)
 
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
@@ -284,7 +301,7 @@ def result(request):
                     'state':state,
                     'ziip':ziip,
                     'country':country,'emails':emails,
-                    'dom':dom,'rank':rank,"tags":tags})
+                    'dom':dom,'rank':rank,"tags":tags,"var13":var13,"varab":varab,"var11":var11,"var10":var10,"var5":var5,"var4":var4,"var3":var3})
         else:
             return render(request,'404.html')  
         """except:
