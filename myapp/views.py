@@ -42,8 +42,6 @@ def saveuserfeedbackform(request):
 import warnings
 warnings.warn = warn
 import warnings
-import pandas as pd
-import numpy as np
 from sklearn.externals import joblib
 from lxml import html
 from json import dump, loads
