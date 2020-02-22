@@ -66,238 +66,252 @@ def result(request):
         #nm=request.GET['url']
     
         text=request.GET['url']
-        
-        if text.startswith('https://') or text.startswith('http://'):
-            var13="Not Applicable"
-            varab="Not Applicable"
-            var11="Not Applicable"
-            var10="Not Applicable"
-            var5="Not Applicable"
-            var4="Not Applicable"
-            var3="Not Applicable"
+        if (text.startswith('https://www.google.com/search?q=')==False):
 
-            if len(text)<=9:
-                return render(request,'errorpage.html')
-            aburl=-1
-            digits="0123456789"
-            if text[8] in digits:
-                oneval=-1
-            else:
-                oneval=1    
-            if len(text)>170:
-                secval=-1
-            else:
-                secval=1  
-            if "@" in text:
-                thirdval=-1
-                var3="@detected"
-            else:
-                thirdval=1       
-            k=text.count("//")          
-            if k>1:
-                fourthval=-1
-                var4="More Redirects"
-            else:
-                fourthval=1
-                
-            if "-" in text:
-                fifthval=-1
-                var5="Prefix-Suffix detected"
-            else:
-                fifthval=1         
-            if "https" in text:
-                sixthval=1
-            else:
-                sixthval=-1
-            temp=text
-            temp=temp[6:]
-            k1=temp.count("https")
+            if text.startswith('https://') or text.startswith('http://'):
+                var13="Not Applicable"
+                varab="Not Applicable"
+                var11="Not Applicable"
+                var10="Not Applicable"
+                var5="Not Applicable"
+                var4="Not Applicable"
+                var3="Not Applicable"
 
-            if k1 >=1:
-                seventhval=-1
-            else:
-                seventhval=1
-            if "about:blank" in text:
-                eighthval=-1
-            else:
-                eighthval=1
-            if "mail()" or "mailto:" in text:
-                ninthval=-1
-            else:
-                ninthval=1
-            re=text.count("//")          
-            if re>3:
-                tenthval=-1
-                var10="redirects more than 2"
-            else:
-                tenthval=1    
-
-            import whois
-            from datetime import datetime
-
-            url=text
-
-            try:
-                res=whois.whois(url)
-                try:
-                    a=res['creation_date'][0]
-                    b=datetime.now()
-                    c=b-a
-                    d=c.days
-                except:
-                    a=res['creation_date']
-                    b=datetime.now()
-                    c=b-a
-                    d=c.days
-                if d>365:
-                    eleventhval=1
-                else:
-                    eleventhval=-1
-                    var11="Domain age working less than a year"
-            except:
+                if len(text)<=9:
+                    return render(request,'errorpage.html')
                 aburl=-1
-                varab="abnormal url"
-                eleventhval=-1   
-                
-
-            if aburl==-1:
-                twelthval=-1
-            else:
-                twelthval=1 
-            import urllib.request, sys, re
-            import xmltodict, json
-
-            try:
-                xml = urllib.request.urlopen('http://data.alexa.com/data?cli=10&dat=s&url={}'.format(text)).read()
-
-                result= xmltodict.parse(xml)
-
-                data = json.dumps(result).replace("@","")
-                data_tojson = json.loads(data)
-                url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
-                rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
-                #print ("rank",rank)
-                if rank<=100000:
-                    thirt=1
+                digits="0123456789"
+                if text[8] in digits:
+                    oneval=-1
                 else:
-                    thirt=-1
+                    oneval=1    
+                if len(text)>170:
+                    secval=-1
+                else:
+                    secval=1  
+                if "@" in text:
+                    thirdval=-1
+                    var3="@detected"
+                else:
+                    thirdval=1       
+                k=text.count("//")          
+                if k>1:
+                    fourthval=-1
+                    var4="More Redirects"
+                else:
+                    fourthval=1
+                    
+                if "-" in text:
+                    fifthval=-1
+                    var5="Prefix-Suffix detected"
+                else:
+                    fifthval=1         
+                if "https" in text:
+                    sixthval=1
+                else:
+                    sixthval=-1
+                temp=text
+                temp=temp[6:]
+                k1=temp.count("https")
+
+                if k1 >=1:
+                    seventhval=-1
+                else:
+                    seventhval=1
+                if "about:blank" in text:
+                    eighthval=-1
+                else:
+                    eighthval=1
+                if "mail()" or "mailto:" in text:
+                    ninthval=-1
+                else:
+                    ninthval=1
+                re=text.count("//")          
+                if re>3:
+                    tenthval=-1
+                    var10="redirects more than 2"
+                else:
+                    tenthval=1    
+
+                import whois
+                from datetime import datetime
+
+                url=text
+
+                try:
+                    res=whois.whois(url)
+                    try:
+                        a=res['creation_date'][0]
+                        b=datetime.now()
+                        c=b-a
+                        d=c.days
+                    except:
+                        a=res['creation_date']
+                        b=datetime.now()
+                        c=b-a
+                        d=c.days
+                    if d>365:
+                        eleventhval=1
+                    else:
+                        eleventhval=-1
+                        var11="Domain age working less than a year"
+                except:
+                    aburl=-1
+                    varab="abnormal url"
+                    eleventhval=-1   
+                    
+
+                if aburl==-1:
+                    twelthval=-1
+                else:
+                    twelthval=1 
+                import urllib.request, sys, re
+                import xmltodict, json
+
+                try:
+                    xml = urllib.request.urlopen('http://data.alexa.com/data?cli=10&dat=s&url={}'.format(text)).read()
+
+                    result= xmltodict.parse(xml)
+
+                    data = json.dumps(result).replace("@","")
+                    data_tojson = json.loads(data)
+                    url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
+                    rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
+                    #print ("rank",rank)
+                    if rank<=100000:
+                        thirt=1
+                    else:
+                        thirt=-1
+                        var13="Larger index in alexa database"
+                    #print (thirt)    
+                except:
+                    thirt=-1 
+                    rank=-1
                     var13="Larger index in alexa database"
-                #print (thirt)    
-            except:
-                thirt=-1 
-                rank=-1
-                var13="Larger index in alexa database"
-                #print (rank)                  
+                    #print (rank)                  
 
 
 
 
-            filename = 'phish_trainedv3.sav'
+                filename = 'phish_trainedv3.sav'
 
-            loaded_model = joblib.load(filename)
+                loaded_model = joblib.load(filename)
 
-            arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
-            #print (arg[0])
-            import whois
-            url=text
-            
-            #print (res)
-            try:
-                res=whois.whois(url)
-                name=res["name"]
-                #print (res["name"])
-                org=res['org']
-                #print (res['org'])
-                add=res['address']
-                #print (res['address'])
-                city=res['city']
-                #print (res['city'])
-                state=res['state']
-                #print (res['state'])
-                ziip=res['zipcode']
-                #print (res['zipcode'])
-                country=res['country']
-                #print (res['country'])
-                emails=res["emails"][0]   
-                #print (res["emails"][0])
-                dom=res['domain_name']
-                #print (res['domain_name'])                
-            except:
-                name="Not found in database"
-                org="Not found in database"
-                add="Not found in database"
-                city="Not found in database"
-                state="Not found in database"
-                ziip="Not found in database"
-                country="Not found in database"
-                emails="Not found in database"
-                dom="Not Found"
+                arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
+                #print (arg[0])
+                import whois
+                url=text
                 
+                #print (res)
+                try:
+                    res=whois.whois(url)
+                    name=res["name"]
+                    #print (res["name"])
+                    org=res['org']
+                    #print (res['org'])
+                    add=res['address']
+                    #print (res['address'])
+                    city=res['city']
+                    #print (res['city'])
+                    state=res['state']
+                    #print (res['state'])
+                    ziip=res['zipcode']
+                    #print (res['zipcode'])
+                    country=res['country']
+                    #print (res['country'])
+                    emails=res["emails"][0]   
+                    #print (res["emails"][0])
+                    dom=res['domain_name']
+                    #print (res['domain_name'])                
+                except:
+                    name="Not found in database"
+                    org="Not found in database"
+                    add="Not found in database"
+                    city="Not found in database"
+                    state="Not found in database"
+                    ziip="Not found in database"
+                    country="Not found in database"
+                    emails="Not found in database"
+                    dom="Not Found"
+                    
 
-            if dom=="Not Found" and rank==-1 :
-                arg[0]=-1
-                #phishing
+                if dom=="Not Found" and rank==-1 :
+                    arg[0]=-1
+                    #phishing
 
-            if arg[0]==1:
-                te="Legitimate"
-            else:
-                te="Malicious"  
-            if arg[0] == 1:
-                mal = True
-            else:
-                mal = False      
+                if arg[0]==1:
+                    te="Legitimate"
+                else:
+                    te="Malicious"  
+                if arg[0] == 1:
+                    mal = True
+                else:
+                    mal = False      
 
-            #print (name,org,add,city,state,ziip,country,emails,dom)
+                #print (name,org,add,city,state,ziip,country,emails,dom)
 
 
-            from json.encoder import JSONEncoder
-            final_entity = { "predicted_argument": [int(arg[0])]}
-            # directly called encode method of JSON
-            #print (JSONEncoder().encode(final_entity)) 
-            obj = Url()
-            obj.result = te 
-            #print (dom,rank)
-                     
-            tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
+                from json.encoder import JSONEncoder
+                final_entity = { "predicted_argument": [int(arg[0])]}
+                # directly called encode method of JSON
+                #print (JSONEncoder().encode(final_entity)) 
+                obj = Url()
+                obj.result = te 
+                #print (dom,rank)
+                        
+                tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
 
-            tags = list(filter(lambda x: x!="Not Found",tags))
-            tags.append(text)
-            try:
-                
-                obj.link = text
-                obj.add = res['address']
-                obj.state = res['state']
-                obj.city = res['city']
-                #obj.ziip = res['zip_code']
-                
-                obj.country = res['country'] 
-                obj.emails = res['emails']
-                obj.dom = res['domain_name']
-                obj.org = res['org']
-                obj.rank = rank
-                obj.save()
-            except:
-                obj.add = "Not Found"
-                obj.state = "Not Found"
-                obj.city = "Not Found"
-                #obj.ziip = res['zip_code']
-                ###########################obj.result = te 
-                obj.country = "Not Found"
-                obj.emails = "Not Found"
-                obj.dom = "Not Found"
-                obj.org = "Not Found"
-                obj.rank = rank
-                obj.save()
-            #print (var13,varab,var11,var10,var5,var4,var3)
+                tags = list(filter(lambda x: x!="Not Found",tags))
+                tags.append(text)
+                try:
+                    
+                    obj.link = text
+                    obj.add = res['address']
+                    obj.state = res['state']
+                    obj.city = res['city']
+                    #obj.ziip = res['zip_code']
+                    
+                    obj.country = res['country'] 
+                    obj.emails = res['emails']
+                    obj.dom = res['domain_name']
+                    obj.org = res['org']
+                    obj.rank = rank
+                    obj.save()
+                except:
+                    obj.add = "Not Found"
+                    obj.state = "Not Found"
+                    obj.city = "Not Found"
+                    #obj.ziip = res['zip_code']
+                    ###########################obj.result = te 
+                    obj.country = "Not Found"
+                    obj.emails = "Not Found"
+                    obj.dom = "Not Found"
+                    obj.org = "Not Found"
+                    obj.rank = rank
+                    obj.save()
+                #print (var13,varab,var11,var10,var5,var4,var3)
 
-            return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
-                    'org':org,
-                    'add':add,
-                    'city':city,
-                    'state':state,
-                    'ziip':ziip,
-                    'country':country,'emails':emails,
-                    'dom':dom,'rank':rank,"tags":tags,"var13":var13,"varab":varab,"var11":var11,"var10":var10,"var5":var5,"var4":var4,"var3":var3})
+                return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
+                        'org':org,
+                        'add':add,
+                        'city':city,
+                        'state':state,
+                        'ziip':ziip,
+                        'country':country,'emails':emails,
+                        'dom':dom,'rank':rank,"tags":tags,"var13":var13,"varab":varab,"var11":var11,"var10":var10,"var5":var5,"var4":var4,"var3":var3})
+
+        elif text.startswith('https://www.google.com/search?q='):
+                return render(request,'result.html',{'result':'Real-time analysis successfull','f2':'Legtimate','mal': True,'text':text,'name':"NA for google search",
+                        'org':"NA for google search",
+                        'add':"NA for google search",
+                        'city':"NA for google search",
+                        'state':"NA for google search",
+                        'ziip':"NA for google search",
+                        'country':"NA for google search",'emails':"NA for google search",
+                        'dom':"NA for google search",'rank':"NA for google search","tags":"NA for google search","var13":"NA for google search","varab":"NA for google search","var11":"NA for google search","var10":"NA for google search","var5":"NA for google search","var4":"NA for google search","var3":"NA for google search"})
+                        
+
+
         else:
             return render(request,'404.html')  
         """except:
@@ -307,216 +321,230 @@ def result(request):
 def api(request):
     try:
         text=request.GET['query']
+
+        if (text.startswith('https://www.google.com/search?q=')==False):
         
-        if text.startswith('https://') or text.startswith('http://'):
+            if text.startswith('https://') or text.startswith('http://'):
 
-            if len(text)<=9:
-                return render(request,'errorpage.html')
-            aburl=-1
-            digits="0123456789"
-            if text[8] in digits:
-                oneval=-1
-            else:
-                oneval=1    
-            if len(text)>170:
-                secval=-1
-            else:
-                secval=1  
-            if "@" in text:
-                thirdval=-1
-            else:
-                thirdval=1    
-            k=text.count("//")          
-            if k>1:
-                fourthval=-1
-            else:
-                fourthval=1
-                
-            if "-" in text:
-                fifthval=-1
-            else:
-                fifthval=1         
-            if "https" in text:
-                sixthval=1
-            else:
-                sixthval=-1
-            temp=text
-            temp=temp[6:]
-            k1=temp.count("https")
-
-            if k1 >=1:
-                seventhval=-1
-            else:
-                seventhval=1
-            if "about:blank" in text:
-                eighthval=-1
-            else:
-                eighthval=1
-            if "mail()" or "mailto:" in text:
-                ninthval=-1
-            else:
-                ninthval=1
-            re=text.count("//")          
-            if re>3:
-                tenthval=-1
-            else:
-                tenthval=1    
-
-            import whois
-            from datetime import datetime
-
-            url=text
-
-            try:
-                res=whois.whois(url)
-                try:
-                    a=res['creation_date'][0]
-                    b=datetime.now()
-                    c=b-a
-                    d=c.days
-                except:
-                    a=res['creation_date']
-                    b=datetime.now()
-                    c=b-a
-                    d=c.days
-                if d>365:
-                    eleventhval=1
-                else:
-                    eleventhval=-1
-            except:
+                if len(text)<=9:
+                    return render(request,'errorpage.html')
                 aburl=-1
-                eleventhval=-1   
-
-            if aburl==-1:
-                twelthval=-1
-            else:
-                twelthval=1 
-            import urllib.request, sys, re
-            import xmltodict, json
-
-            try:
-                xml = urllib.request.urlopen('http://data.alexa.com/data?cli=10&dat=s&url={}'.format(text)).read()
-
-                result= xmltodict.parse(xml)
-
-                data = json.dumps(result).replace("@","")
-                data_tojson = json.loads(data)
-                url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
-                rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
-                #print ("rank",rank)
-                if rank<=100000:
-                    thirt=1
+                digits="0123456789"
+                if text[8] in digits:
+                    oneval=-1
                 else:
-                    thirt=-1
-                #print (thirt)    
-            except:
-                thirt=-1 
-                rank="Not Indexed by Alexa"
-                #print (rank)                  
+                    oneval=1    
+                if len(text)>170:
+                    secval=-1
+                else:
+                    secval=1  
+                if "@" in text:
+                    thirdval=-1
+                else:
+                    thirdval=1    
+                k=text.count("//")          
+                if k>1:
+                    fourthval=-1
+                else:
+                    fourthval=1
+                    
+                if "-" in text:
+                    fifthval=-1
+                else:
+                    fifthval=1         
+                if "https" in text:
+                    sixthval=1
+                else:
+                    sixthval=-1
+                temp=text
+                temp=temp[6:]
+                k1=temp.count("https")
+
+                if k1 >=1:
+                    seventhval=-1
+                else:
+                    seventhval=1
+                if "about:blank" in text:
+                    eighthval=-1
+                else:
+                    eighthval=1
+                if "mail()" or "mailto:" in text:
+                    ninthval=-1
+                else:
+                    ninthval=1
+                re=text.count("//")          
+                if re>3:
+                    tenthval=-1
+                else:
+                    tenthval=1    
+
+                import whois
+                from datetime import datetime
+
+                url=text
+
+                try:
+                    res=whois.whois(url)
+                    try:
+                        a=res['creation_date'][0]
+                        b=datetime.now()
+                        c=b-a
+                        d=c.days
+                    except:
+                        a=res['creation_date']
+                        b=datetime.now()
+                        c=b-a
+                        d=c.days
+                    if d>365:
+                        eleventhval=1
+                    else:
+                        eleventhval=-1
+                except:
+                    aburl=-1
+                    eleventhval=-1   
+
+                if aburl==-1:
+                    twelthval=-1
+                else:
+                    twelthval=1 
+                import urllib.request, sys, re
+                import xmltodict, json
+
+                try:
+                    xml = urllib.request.urlopen('http://data.alexa.com/data?cli=10&dat=s&url={}'.format(text)).read()
+
+                    result= xmltodict.parse(xml)
+
+                    data = json.dumps(result).replace("@","")
+                    data_tojson = json.loads(data)
+                    url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
+                    rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
+                    #print ("rank",rank)
+                    if rank<=100000:
+                        thirt=1
+                    else:
+                        thirt=-1
+                    #print (thirt)    
+                except:
+                    thirt=-1 
+                    rank="Not Indexed by Alexa"
+                    #print (rank)                  
 
 
 
 
-            filename = 'phish_trainedv3.sav'
+                filename = 'phish_trainedv3.sav'
 
-            loaded_model = joblib.load(filename)
+                loaded_model = joblib.load(filename)
 
-            arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
-            #print (arg[0])
-            import whois
-            url=text
-            
-            #print (res)
-            try:
-                res=whois.whois(url)
-                name=res["name"]
-                #print (res["name"])
-                org=res['org']
-                #print (res['org'])
-                add=res['address']
-                #print (res['address'])
-                city=res['city']
-                #print (res['city'])
-                state=res['state']
-                #print (res['state'])
-                ziip=res['zipcode']
-                #print (res['zipcode'])
-                country=res['country']
-                #print (res['country'])
-                emails=res["emails"][0]   
-                #print (res["emails"][0])
-                dom=res['domain_name']
-                #print (res['domain_name'])                
-            except:
-                name="Not Found"
-                org="Not Found"
-                add="Not Found"
-                city="Not Found"
-                state="Not Found"
-                ziip="Not Found"
-                country="Not Found"
-                emails="Not Found"   
-                dom="Not Found"
+                arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
+                #print (arg[0])
+                import whois
+                url=text
+                
+                #print (res)
+                try:
+                    res=whois.whois(url)
+                    name=res["name"]
+                    #print (res["name"])
+                    org=res['org']
+                    #print (res['org'])
+                    add=res['address']
+                    #print (res['address'])
+                    city=res['city']
+                    #print (res['city'])
+                    state=res['state']
+                    #print (res['state'])
+                    ziip=res['zipcode']
+                    #print (res['zipcode'])
+                    country=res['country']
+                    #print (res['country'])
+                    emails=res["emails"][0]   
+                    #print (res["emails"][0])
+                    dom=res['domain_name']
+                    #print (res['domain_name'])                
+                except:
+                    name="Not Found"
+                    org="Not Found"
+                    add="Not Found"
+                    city="Not Found"
+                    state="Not Found"
+                    ziip="Not Found"
+                    country="Not Found"
+                    emails="Not Found"   
+                    dom="Not Found"
 
-            if dom=="Not Found" and rank=="Not Indexed by Alexa" :
-                arg[0]=-1
-                #phishing
+                if dom=="Not Found" and rank=="Not Indexed by Alexa" :
+                    arg[0]=-1
+                    #phishing
 
-            if arg[0]==1:
-                te="Legitimate"
-            else:
-                te="Malicious"  
-            if arg[0] == 1:
-                mal = True
-            else:
-                mal = False      
-            if arg[0] == 1:
-                malstatus = False
-            else:
-                malstatus = True                 
-            from json.encoder import JSONEncoder
-            final_entity = { "predicted_argument": [int(arg[0])]}
-            # directly called encode method of JSON
-            #print (JSONEncoder().encode(final_entity)) 
-            
-            #print (dom,rank)
-                     
-            """res=whois.whois(url)
-            obj = Url()
-            obj.link=res["name"]
-            print (res["name"])
-            obj.org=res['org']
-            print (res['org'])
-            obj.add=res['address']
-            print (res['address'])
-            obj.city=res['city']
-            print (res['city'])
-            obj.state=res['state']
-            print (res['state'])
-            print (res['zipcode'])
-            obj.country=res['country']
-            print (res['country'])
-            obj.emails=res["emails"][0]   
-            print (res["emails"][0])
-            obj.dom=res['domain_name']
-            print (res['domain_name'])
-            obj.rank = rank
-            obj.save()
-"""
-        '''return render(request, 'result.html',
-                  {'result': 'Real-time analysis successfull',
-                  'f2': te, 'mal': mal,'text':text})'''
+                if arg[0]==1:
+                    te="Legitimate"
+                else:
+                    te="Malicious"  
+                if arg[0] == 1:
+                    mal = True
+                else:
+                    mal = False      
+                if arg[0] == 1:
+                    malstatus = False
+                else:
+                    malstatus = True                 
+                from json.encoder import JSONEncoder
+                final_entity = { "predicted_argument": [int(arg[0])]}
+                # directly called encode method of JSON
+                #print (JSONEncoder().encode(final_entity)) 
+                
+                #print (dom,rank)
+                        
+                """res=whois.whois(url)
+                obj = Url()
+                obj.link=res["name"]
+                print (res["name"])
+                obj.org=res['org']
+                print (res['org'])
+                obj.add=res['address']
+                print (res['address'])
+                obj.city=res['city']
+                print (res['city'])
+                obj.state=res['state']
+                print (res['state'])
+                print (res['zipcode'])
+                obj.country=res['country']
+                print (res['country'])
+                obj.emails=res["emails"][0]   
+                print (res["emails"][0])
+                obj.dom=res['domain_name']
+                print (res['domain_name'])
+                obj.rank = rank
+                obj.save()
+    """
+            '''return render(request, 'result.html',
+                    {'result': 'Real-time analysis successfull',
+                    'f2': te, 'mal': mal,'text':text})'''
 
-        import datetime
-        mydict = {
-            "query" : url,
-            "malware" : malstatus,
-            "datetime" : str(datetime.datetime.now())
-        }
-        response = JsonResponse(mydict)
-        return response
+            import datetime
+            mydict = {
+                "query" : url,
+                "malware" : malstatus,
+                "datetime" : str(datetime.datetime.now())
+            }
+            response = JsonResponse(mydict)
+            return response
+
+        else:
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
+            response = JsonResponse(mydict)
+            return response            
+
     except:
         return render(request,'404.html')                      
+        
 
 def about(request):
     #return HttpResponse("about")
