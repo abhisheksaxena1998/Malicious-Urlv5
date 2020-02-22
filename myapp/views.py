@@ -176,18 +176,18 @@ def result(request):
                 data_tojson = json.loads(data)
                 url = data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["URL"]
                 rank= int(data_tojson["ALEXA"]["SD"][1]["POPULARITY"]["TEXT"])
-                print ("rank",rank)
+                #print ("rank",rank)
                 if rank<=100000:
                     thirt=1
                 else:
                     thirt=-1
                     var13="Larger index in alexa database"
-                print (thirt)    
+                #print (thirt)    
             except:
                 thirt=-1 
                 rank=-1
                 var13="Larger index in alexa database"
-                print (rank)                  
+                #print (rank)                  
 
 
 
@@ -197,7 +197,7 @@ def result(request):
             loaded_model = joblib.load(filename)
 
             arg=loaded_model.predict(([[oneval,secval,thirdval,fourthval,fifthval,seventhval,eighthval,ninthval,tenthval,eleventhval,twelthval,thirt]]))
-            print (arg[0])
+            #print (arg[0])
             import whois
             url=text
             
@@ -205,23 +205,23 @@ def result(request):
             try:
                 res=whois.whois(url)
                 name=res["name"]
-                print (res["name"])
+                #print (res["name"])
                 org=res['org']
-                print (res['org'])
+                #print (res['org'])
                 add=res['address']
-                print (res['address'])
+                #print (res['address'])
                 city=res['city']
-                print (res['city'])
+                #print (res['city'])
                 state=res['state']
-                print (res['state'])
+                #print (res['state'])
                 ziip=res['zipcode']
-                print (res['zipcode'])
+                #print (res['zipcode'])
                 country=res['country']
-                print (res['country'])
+                #print (res['country'])
                 emails=res["emails"][0]   
-                print (res["emails"][0])
+                #print (res["emails"][0])
                 dom=res['domain_name']
-                print (res['domain_name'])                
+                #print (res['domain_name'])                
             except:
                 name="Not found in database"
                 org="Not found in database"
@@ -247,16 +247,16 @@ def result(request):
             else:
                 mal = False      
 
-            print (name,org,add,city,state,ziip,country,emails,dom)
+            #print (name,org,add,city,state,ziip,country,emails,dom)
 
 
             from json.encoder import JSONEncoder
             final_entity = { "predicted_argument": [int(arg[0])]}
             # directly called encode method of JSON
-            print (JSONEncoder().encode(final_entity)) 
+            #print (JSONEncoder().encode(final_entity)) 
             obj = Url()
             obj.result = te 
-            print (dom,rank)
+            #print (dom,rank)
                      
             tags = [name,org,state,add,city,ziip,country,emails,dom,rank]
 
@@ -288,7 +288,7 @@ def result(request):
                 obj.org = "Not Found"
                 obj.rank = rank
                 obj.save()
-            print (var13,varab,var11,var10,var5,var4,var3)
+            #print (var13,varab,var11,var10,var5,var4,var3)
 
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                     'org':org,
