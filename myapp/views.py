@@ -153,7 +153,7 @@ def result(request):
                     eleventhval=1
                 else:
                     eleventhval=-1
-                    var11="Domain ageworking  less than a year"
+                    var11="Domain age working less than a year"
             except:
                 aburl=-1
                 varab="abnormal url"
