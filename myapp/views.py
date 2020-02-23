@@ -64,21 +64,8 @@ def result(request):
 
         """try:"""
         #nm=request.GET['url']
-        text=request.GET['url']
-
-
-        if (text.startswith("https://malicious-url-detectorv5.herokuapp.com/")):
-            return render(request,'result.html',{'result':'Real-time analysis successfull','f2':'Legtimate','mal': True,'text':text,'name':"The Legions",
-                        'org':"The Legions",
-                        'add':"Hidden for privacy",
-                        'city':"New Delhi",
-                        'state':"New Delhi",
-                        'ziip':"201301",
-                        'country':"India",'emails':"thelegions@gmail.com",
-                        'dom':"NA",'rank':"Hidden for privacy","tags":"NA","var13":"NA","varab":"NA","var11":"NA","var10":"NA","var5":"NA","var4":"NA","var3":"NA"})
-                        
-
     
+        text=request.GET['url']
         if (text.startswith('https://www.google.com/search?q=')==False):
 
             if text.startswith('https://') or text.startswith('http://'):
@@ -334,17 +321,6 @@ def result(request):
 def api(request):
     try:
         text=request.GET['query']
-
-        if (text.startswith("https://malicious-url-detectorv5.herokuapp.com/")):
-            import datetime
-            mydict = {
-                "query" : text,
-                "malware" : False,
-                "datetime" : str(datetime.datetime.now())
-            }
-            response = JsonResponse(mydict)
-            return response            
-    
 
         if (text.startswith('https://www.google.com/search?q=')==False):
         
