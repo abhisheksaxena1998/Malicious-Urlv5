@@ -343,8 +343,43 @@ def result(request):
 def api(request):
     try:
         text=request.GET['query']
+        import datetime
 
-        if (text.startswith('https://www.google.com/search?q=')==False) :
+        if text.startswith('https://malicious-url-detectorv5.herokuapp.com/'): 
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
+            response = JsonResponse(mydict)
+            return response  
+
+
+        elif text.startswith('https://www.youtube.com/'):
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
+            response = JsonResponse(mydict)
+            return response  
+
+        elif text.startswith('https://www.google.com/search?q='):
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
+            response = JsonResponse(mydict)
+            return response    
+
+
+        #if (text.startswith('https://www.google.com/search?q=')==False) :
+
+        else:
         
             if text.startswith('https://') or text.startswith('http://'):
 
@@ -554,31 +589,7 @@ def api(request):
             response = JsonResponse(mydict)
             return response
 
-        elif text.startswith('https://malicious-url-detectorv5.herokuapp.com/'): 
-            import datetime
-            mydict = {
-                "query" : text,
-                "malware" : False,
-                "datetime" : str(datetime.datetime.now())
-            }
-
-        elif text.startswith('https://www.youtube.com/'):
-            import datetime
-            mydict = {
-                "query" : text,
-                "malware" : False,
-                "datetime" : str(datetime.datetime.now())
-            }
-
-        else:
-            import datetime
-            mydict = {
-                "query" : text,
-                "malware" : False,
-                "datetime" : str(datetime.datetime.now())
-            }
-            response = JsonResponse(mydict)
-            return response            
+                
 
     except:
         return render(request,'404.html')                      
