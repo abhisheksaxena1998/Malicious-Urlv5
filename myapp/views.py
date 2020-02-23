@@ -66,7 +66,7 @@ def result(request):
         #nm=request.GET['url']
     
         text=request.GET['url']
-        if (text.startswith('https://www.google.com/search?q=')==False or text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False or text.startswith('https://www.youtube.com/')==False ):
+        if (text.startswith('https://www.google.com/search?q=')==False ):
 
             if text.startswith('https://') or text.startswith('http://'):
                 var13="Not Applicable"
@@ -309,7 +309,29 @@ def result(request):
                         'ziip':"NA for google search",
                         'country':"NA for google search",'emails':"NA for google search",
                         'dom':"NA for google search",'rank':"NA for google search","tags":"NA for google search","var13":"NA for google search","varab":"NA for google search","var11":"NA for google search","var10":"NA for google search","var5":"NA for google search","var4":"NA for google search","var3":"NA for google search"})
-                        
+           
+        elif text.startswith('https://malicious-url-detectorv5.herokuapp.com/')  :
+            return render(request,'result.html',{'result':'Real-time analysis successfull','f2':'Legtimate','mal': True,'text':text,'name':"The Legions",
+                        'org':"The Legions",
+                        'add':"New Delhi",
+                        'city':"New Delhi",
+                        'state':"New Delhi",
+                        'ziip':"201301",
+                        'country':"India",'emails':"thelegions@gmail.com",
+                        'dom':"Hidden For Privacy",'rank':"Hidden For Privacy","tags":"Hidden For Privacy","var13":"NA","varab":"NA","var11":"NA","var10":"NA","var5":"NA","var4":"NA","var3":"NA"})
+            
+        elif text.startswith('https://www.youtube.com/watch?v='):
+            return render(request,'result.html',{'result':'Real-time analysis successfull','f2':'Legtimate','mal': True,'text':text,'name':"NA for Youtube search",
+                        'org':"NA for Youtube search",
+                        'add':"NA for Youtube search",
+                        'city':"NA for Youtube search",
+                        'state':"NA for Youtube search",
+                        'ziip':"NA for Youtube search",
+                        'country':"NA for Youtube search",'emails':"NA for Youtube search",
+                        'dom':"NA for Youtube search",'rank':"NA for Youtube search","tags":"NA for Youtube search","var13":"NA for Youtube search","varab":"NA for Youtube search","var11":"NA for Youtube search","var10":"NA for Youtube search","var5":"NA for Youtube search","var4":"NA for Youtube search","var3":"NA for Youtube search"})
+
+
+
 
 
         else:
@@ -322,7 +344,7 @@ def api(request):
     try:
         text=request.GET['query']
 
-        if (text.startswith('https://www.google.com/search?q=')==False or text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False or text.startswith('https://www.youtube.com/')==False):
+        if (text.startswith('https://www.google.com/search?q=')==False) or (text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False) or (text.startswith('https://www.youtube.com/')==False):
         
             if text.startswith('https://') or text.startswith('http://'):
 
