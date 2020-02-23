@@ -344,7 +344,7 @@ def api(request):
     try:
         text=request.GET['query']
 
-        if (text.startswith('https://www.google.com/search?q=')==False) or (text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False) or (text.startswith('https://www.youtube.com/')==False):
+        if (text.startswith('https://www.google.com/search?q=')==False) :
         
             if text.startswith('https://') or text.startswith('http://'):
 
@@ -553,6 +553,22 @@ def api(request):
             }
             response = JsonResponse(mydict)
             return response
+
+        elif text.startswith('https://malicious-url-detectorv5.herokuapp.com/'): 
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
+
+        elif text.startswith('https://www.youtube.com/'):
+            import datetime
+            mydict = {
+                "query" : text,
+                "malware" : False,
+                "datetime" : str(datetime.datetime.now())
+            }
 
         else:
             import datetime
