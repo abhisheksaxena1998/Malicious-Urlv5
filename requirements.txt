@@ -4,6 +4,8 @@ chardet>=3.0.4
 dj-database-url>=0.5.0
 Django>=3.0.2
 django-cors-headers>=3.2.1
+django-postgres-copy==2.3.1
+python-decouple==3.1
 django-heroku>=0.3.1
 django-allauth>=0.41.0
 future>=0.18.2
