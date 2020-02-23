@@ -66,7 +66,7 @@ def result(request):
         #nm=request.GET['url']
     
         text=request.GET['url']
-        if (text.startswith('https://www.google.com/search?q=')==False):
+        if (text.startswith('https://www.google.com/search?q=')==False or text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False or text.startswith('https://www.youtube.com/')==False ):
 
             if text.startswith('https://') or text.startswith('http://'):
                 var13="Not Applicable"
