@@ -322,7 +322,7 @@ def api(request):
     try:
         text=request.GET['query']
 
-        if (text.startswith('https://www.google.com/search?q=')==False):
+        if (text.startswith('https://www.google.com/search?q=')==False or text.startswith('https://malicious-url-detectorv5.herokuapp.com/')==False or text.startswith('https://www.youtube.com/')==False):
         
             if text.startswith('https://') or text.startswith('http://'):
 
