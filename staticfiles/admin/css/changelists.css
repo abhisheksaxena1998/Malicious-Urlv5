@@ -98,8 +98,7 @@
 
 #changelist #toolbar form input[type="submit"] {
     border: 1px solid #ccc;
-    font-size: 13px;
-    padding: 4px 8px;
+    padding: 2px 10px;
     margin: 0;
     vertical-align: middle;
     background: #fff;

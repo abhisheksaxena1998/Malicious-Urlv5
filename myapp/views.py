@@ -324,6 +324,19 @@ def result(request):
                     obj.save()
                 #print (var13,varab,var11,var10,var5,var4,var3)
 
+                import csv
+                with open ('static//dataset.csv','a', encoding="utf-8") as res:        
+                    writer=csv.writer(res)           
+                    s="{},{},{},{},{},{},{},{},{},{},{},{}\n".format(text,te,name,
+                        org,
+                        add,
+                        city,
+                        state,
+                        ziip,
+                        country,emails,
+                        dom,rank)
+                    res.write(s)
+
                 return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                         'org':org,
                         'add':add,
@@ -679,5 +692,9 @@ def searchdiscuss(request):
     except:
         return render(request,'404.html')
 
-
+def getdataset(request):
+    try:
+        return render(request,'getdataset.html')
+    except:
+        return render(request,'404.html')
 			
