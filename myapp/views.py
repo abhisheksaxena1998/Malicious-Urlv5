@@ -171,6 +171,8 @@ def result(request):
 
                 url=text
 
+
+                """
                 try:
                     res=whois.whois(url)
                     try:
@@ -192,12 +194,62 @@ def result(request):
                     aburl=-1
                     varab="abnormal url"
                     eleventhval=-1   
-                    
+                """
+                #code replaced whois
+                # 
+                """try:"""
+                d=-1
+                try:
+                    res=whois.whois(url)
+                except:
+                    print("getaddrerrror DNE")
+                    d=0
+                    name="Not found in database"
+                    org="Not found in database"
+                    add="Not found in database"
+                    city="Not found in database"
+                    state="Not found in database"
+                    ziip="Not found in database"
+                    country="Not found in database"
+                    emails="Not found in database"
+                    dom="Not Found"
+                if d!=0:    
+                    try:
+                        if len(res.creation_date)>1:
+                            a=res['creation_date'][0]
+                            b=datetime.now()
+                            c=b-a
+                            d=c.days
+                    except:
+                        a=res['creation_date']
+                        b=datetime.now()
+                        c=b-a
+                        d=c.days
+                """except:
+                    print("getaddrerrror DNE")
+                    d=0"""
+
+
+                
+
+                if d>365:
+                    eleventhval=1
+                    aburl=1
+                elif d<=365:
+                    eleventhval=-1
+                    aburl=-1
+                    var11="Domain age working less than a year"
+        
+     
+
+
 
                 if aburl==-1:
                     twelthval=-1
                 else:
                     twelthval=1 
+
+                #print (twelthval,eleventhval,aburl,d)    
                 import urllib.request, sys, re
                 import xmltodict, json
 
@@ -236,27 +288,27 @@ def result(request):
                 url=text
                 
                 #print (res)
-                try:
-                    res=whois.whois(url)
-                    name=res["name"]
-                    #print (res["name"])
-                    org=res['org']
-                    #print (res['org'])
-                    add=res['address']
-                    #print (res['address'])
-                    city=res['city']
-                    #print (res['city'])
-                    state=res['state']
-                    #print (res['state'])
-                    ziip=res['zipcode']
-                    #print (res['zipcode'])
-                    country=res['country']
-                    #print (res['country'])
-                    emails=res["emails"][0]   
-                    #print (res["emails"][0])
-                    dom=res['domain_name']
-                    #print (res['domain_name'])                
-                except:
+                #res=whois.whois(url)
+                if (d!=0):
+                    name=res.domain_name
+                    #print (res.domain_name)
+                    org=res.org
+                    #print (res.org)
+                    add=res.address
+                    #print (res.address)
+                    city=res.city
+                    #print (res.city)
+                    state=res.state
+                    #print (res.state)
+                    ziip=res.zipcode
+                    #print (res.zipcode)
+                    country=res.country
+                    #print (res.country)
+                    emails=res.emails
+                    #print (res.emails)
+                    dom=res.domain_name
+                    #print (res.domain_name)                
+                else:
                     name="Not found in database"
                     org="Not found in database"
                     add="Not found in database"
@@ -266,6 +318,8 @@ def result(request):
                     country="Not found in database"
                     emails="Not found in database"
                     dom="Not Found"
+
+                
                     
 
                 if dom=="Not Found" and rank==-1 :
@@ -296,7 +350,20 @@ def result(request):
 
                 tags = list(filter(lambda x: x!="Not Found",tags))
                 tags.append(text)
-                try:
+                obj.link = text
+                obj.add = add
+                obj.state = state
+                obj.city = city
+                #obj.ziip = res['zip_code']
+                
+                obj.country = country 
+                obj.emails = emails
+                obj.dom = dom
+                obj.org = org
+                obj.rank = rank
+                obj.save()
+
+                """try:
                     
                     obj.link = text
                     obj.add = res['address']
@@ -321,7 +388,10 @@ def result(request):
                     obj.dom = "Not Found"
                     obj.org = "Not Found"
                     obj.rank = rank
-                    obj.save()
+                    obj.save()"""
+
+
+
                 #print (var13,varab,var11,var10,var5,var4,var3)
 
                 import csv
