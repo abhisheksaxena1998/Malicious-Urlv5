@@ -358,27 +358,27 @@ def result(request):
                 obj.state = state
                 obj.city = city
                 #obj.ziip = res['zip_code']
-                
                 obj.country = country 
                 obj.emails = emails
                 obj.dom = dom
                 obj.org = org
                 obj.rank = rank
+                obj.registrar=registrar
                 obj.save()
 
             
                 if add:
-                    add=add.replace(","," ")
+                    add=add.replace(",","")
                 
-                name=" ".join(name)
+                name="".join(name)
                 print (name)
-                emails=" ".join(emails)
-                org=org.replace(","," ")
+                emails="".join(emails)
+                org=org.replace(",","")
                 print (org)
-                dom=" ".join(dom)
+                dom="".join(dom)
                 print (dom)
                 if registrar:
-                    registrar=registrar.replace(","," ")
+                    registrar=registrar.replace(",","")
                 print (registrar)
                 #print (emails)
                 #print(city)
