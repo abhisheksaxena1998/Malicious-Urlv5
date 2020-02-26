@@ -75,7 +75,7 @@ def result(request):
                         'state':"New Delhi",
                         'ziip':"201301",
                         'country':"India",'emails':"thelegions@gmail.com",
-                        'dom':"Hidden For Privacy",'rank':"Hidden For Privacy","tags":"Hidden For Privacy","var13":"NA","varab":"NA","var11":"NA","var10":"NA","var5":"NA","var4":"NA","var3":"NA"})
+                        'dom':"Hidden For Privacy",'rank':"Hidden For Privacy","tags":"Hidden For Privacy","registrar":"Hidden For Privacy","var13":"NA","varab":"NA","var11":"NA","var10":"NA","var5":"NA","var4":"NA","var3":"NA"})
 
 
         elif text.startswith('https://www.google.com/search?q='):
@@ -86,7 +86,7 @@ def result(request):
                         'state':"NA for google search",
                         'ziip':"NA for google search",
                         'country':"NA for google search",'emails':"NA for google search",
-                        'dom':"NA for google search",'rank':"NA for google search","tags":"NA for google search","var13":"NA for google search","varab":"NA for google search","var11":"NA for google search","var10":"NA for google search","var5":"NA for google search","var4":"NA for google search","var3":"NA for google search"})
+                        'dom':"NA for google search",'rank':"NA for google search","tags":"NA for google search","registrar":"Hidden For Privacy","var13":"NA for google search","varab":"NA for google search","var11":"NA for google search","var10":"NA for google search","var5":"NA for google search","var4":"NA for google search","var3":"NA for google search"})
 
 
         elif text.startswith('https://www.youtube.com/watch?v='):
@@ -97,7 +97,7 @@ def result(request):
                         'state':"NA for Youtube search",
                         'ziip':"NA for Youtube search",
                         'country':"NA for Youtube search",'emails':"NA for Youtube search",
-                        'dom':"NA for Youtube search",'rank':"NA for Youtube search","tags":"NA for Youtube search","var13":"NA for Youtube search","varab":"NA for Youtube search","var11":"NA for Youtube search","var10":"NA for Youtube search","var5":"NA for Youtube search","var4":"NA for Youtube search","var3":"NA for Youtube search"})
+                        'dom':"NA for Youtube search",'rank':"NA for Youtube search","tags":"NA for Youtube search","registrar":"Hidden For Privacy","var13":"NA for Youtube search","varab":"NA for Youtube search","var11":"NA for Youtube search","var10":"NA for Youtube search","var5":"NA for Youtube search","var4":"NA for Youtube search","var3":"NA for Youtube search"})
 
         elif (text.startswith('https://www.google.com/search?q=')==False ):
 
@@ -213,6 +213,7 @@ def result(request):
                     country="Not found in database"
                     emails="Not found in database"
                     dom="Not Found"
+                    registrar="Not Found"
                 if d!=0:    
                     try:
                         if len(res.creation_date)>1:
@@ -307,7 +308,8 @@ def result(request):
                     emails=res.emails
                     #print (res.emails)
                     dom=res.domain_name
-                    #print (res.domain_name)                
+                    #print (res.domain_name)   
+                    registrar=res.registrar             
                 else:
                     name="Not found in database"
                     org="Not found in database"
@@ -318,6 +320,7 @@ def result(request):
                     country="Not found in database"
                     emails="Not found in database"
                     dom="Not Found"
+                    registrar="Not Found"
 
                 
                     
@@ -363,48 +366,34 @@ def result(request):
                 obj.rank = rank
                 obj.save()
 
-                """try:
-                    
-                    obj.link = text
-                    obj.add = res['address']
-                    obj.state = res['state']
-                    obj.city = res['city']
-                    #obj.ziip = res['zip_code']
-                    
-                    obj.country = res['country'] 
-                    obj.emails = res['emails']
-                    obj.dom = res['domain_name']
-                    obj.org = res['org']
-                    obj.rank = rank
-                    obj.save()
-                except:
-                    obj.add = "Not Found"
-                    obj.state = "Not Found"
-                    obj.city = "Not Found"
-                    #obj.ziip = res['zip_code']
-                    ###########################obj.result = te 
-                    obj.country = "Not Found"
-                    obj.emails = "Not Found"
-                    obj.dom = "Not Found"
-                    obj.org = "Not Found"
-                    obj.rank = rank
-                    obj.save()"""
-
-
-
-                #print (var13,varab,var11,var10,var5,var4,var3)
+            
+                if add:
+                    add=add.replace(","," ")
+                
+                name=" ".join(name)
+                print (name)
+                emails=" ".join(emails)
+                org=org.replace(","," ")
+                print (org)
+                dom=" ".join(dom)
+                print (dom)
+                if registrar:
+                    registrar=registrar.replace(","," ")
+                print (registrar)
+                #print (emails)
+                #print(city)
 
                 import csv
-                with open ('static//dataset.csv','a', encoding="utf-8") as res:        
+                with open ('static//dataset.csv','a') as res:        
                     writer=csv.writer(res)           
-                    s="{},{},{},{},{},{},{},{},{},{},{},{}\n".format(text,te,name,
+                    s="{},{},{},{},{},{},{},{},{},{},{},{},{}\n".format(text,te,(name),
                         org,
                         add,
                         city,
                         state,
                         ziip,
                         country,emails,
-                        dom,rank)
+                        str(dom),rank,str(registrar))
                     res.write(s)
 
                 return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
@@ -414,7 +403,7 @@ def result(request):
                         'state':state,
                         'ziip':ziip,
                         'country':country,'emails':emails,
-                        'dom':dom,'rank':rank,"tags":tags,"var13":var13,"varab":varab,"var11":var11,"var10":var10,"var5":var5,"var4":var4,"var3":var3})
+                        'dom':dom,'rank':rank,'registrar':registrar,"tags":tags,"var13":var13,"varab":varab,"var11":var11,"var10":var10,"var5":var5,"var4":var4,"var3":var3})
 
 
 
