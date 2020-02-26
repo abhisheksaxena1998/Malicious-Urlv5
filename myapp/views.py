@@ -524,30 +524,56 @@ def api(request):
 
                 url=text
 
+                d=-1
                 try:
                     res=whois.whois(url)
+                except:
+                    print("getaddrerrror DNE")
+                    d=0
+                    name="Not found in database"
+                    org="Not found in database"
+                    add="Not found in database"
+                    city="Not found in database"
+                    state="Not found in database"
+                    ziip="Not found in database"
+                    country="Not found in database"
+                    emails="Not found in database"
+                    dom="Not Found"
+                if d!=0:    
                     try:
-                        a=res['creation_date'][0]
-                        b=datetime.now()
-                        c=b-a
-                        d=c.days
+                        if len(res.creation_date)>1:
+                            a=res['creation_date'][0]
+                            b=datetime.now()
+                            c=b-a
+                            d=c.days
                     except:
                         a=res['creation_date']
                         b=datetime.now()
                         c=b-a
                         d=c.days
-                    if d>365:
-                        eleventhval=1
-                    else:
-                        eleventhval=-1
-                except:
+                """except:
+                    print("getaddrerrror DNE")
+                    d=0"""
+
+
+                
+
+                if d>365:
+                    eleventhval=1
+                    aburl=1
+                elif d<=365:
+                    eleventhval=-1
                     aburl=-1
-                    eleventhval=-1   
+                    var11="Domain age working less than a year"
+        
+     
+
+
 
                 if aburl==-1:
                     twelthval=-1
                 else:
-                    twelthval=1 
+                    twelthval=1                 
                 import urllib.request, sys, re
                 import xmltodict, json
 
@@ -584,36 +610,52 @@ def api(request):
                 url=text
                 
                 #print (res)
-                try:
-                    res=whois.whois(url)
-                    name=res["name"]
-                    #print (res["name"])
-                    org=res['org']
-                    #print (res['org'])
-                    add=res['address']
-                    #print (res['address'])
-                    city=res['city']
-                    #print (res['city'])
-                    state=res['state']
-                    #print (res['state'])
-                    ziip=res['zipcode']
-                    #print (res['zipcode'])
-                    country=res['country']
-                    #print (res['country'])
-                    emails=res["emails"][0]   
-                    #print (res["emails"][0])
-                    dom=res['domain_name']
-                    #print (res['domain_name'])                
-                except:
-                    name="Not Found"
-                    org="Not Found"
-                    add="Not Found"
-                    city="Not Found"
-                    state="Not Found"
-                    ziip="Not Found"
-                    country="Not Found"
-                    emails="Not Found"   
+                if (d!=0):
+                    name=res.domain_name
+                    #print (res.domain_name)
+                    org=res.org
+                    #print (res.org)
+                    add=res.address
+                    #print (res.address)
+                    city=res.city
+                    #print (res.city)
+                    state=res.state
+                    #print (res.state)
+                    ziip=res.zipcode
+                    #print (res.zipcode)
+                    country=res.country
+                    #print (res.country)
+                    emails=res.emails
+                    #print (res.emails)
+                    dom=res.domain_name
+                    #print (res.domain_name)                
+                else:
+                    name="Not found in database"
+                    org="Not found in database"
+                    add="Not found in database"
+                    city="Not found in database"
+                    state="Not found in database"
+                    ziip="Not found in database"
+                    country="Not found in database"
+                    emails="Not found in database"
                     dom="Not Found"
+
+                
+                    
+
+                if dom=="Not Found" and rank==-1 :
+                    arg[0]=-1
+                    #phishing
+
+                if arg[0]==1:
+                    te="Legitimate"
+                else:
+                    te="Malicious"  
+                if arg[0] == 1:
+                    mal = True
+                else:
+                    mal = False      
+
 
                 if dom=="Not Found" and rank=="Not Indexed by Alexa" :
                     arg[0]=-1
