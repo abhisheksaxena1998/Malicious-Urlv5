@@ -372,8 +372,10 @@ def result(request):
                 
                 name="".join(name)
                 print (name)
-                emails="".join(emails)
-                org=org.replace(",","")
+                if emails!=None:
+                    emails="".join(emails)
+                if org!=None:    
+                    org=org.replace(",","")
                 print (org)
                 dom="".join(dom)
                 print (dom)
