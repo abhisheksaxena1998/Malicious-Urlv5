@@ -19,6 +19,19 @@
 
 <body>
   <!--Navbar-->
+  <div class="card" id="card" style="
+    background-color: #dee2e6;
+    height: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 99;">
+  </div>
+  <div class="spinner-border" role="status" style="background-color: white;position: absolute;left: 50%;top: 50%;z-index: 100;">
+    <span class="sr-only">Loading...</span>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-light white">
 
     <!-- Navbar brand -->
@@ -142,6 +155,21 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+            //Preloader
+            preloaderFadeOutTime = 5000;
+            function hidePreloader() {
+                var preloader1 = $('.spinner-border');
+                var preloader2 = $('#card');
+
+                preloader1.fadeOut(preloaderFadeOutTime);
+                preloader2.fadeOut(preloaderFadeOutTime);
+
+            }
+            hidePreloader();
+        });
+    </script>
 </body>
 
 </html>
