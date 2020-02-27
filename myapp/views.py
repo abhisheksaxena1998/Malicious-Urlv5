@@ -367,12 +367,12 @@ def result(request):
                 obj.save()
 
                 print (add)
-            
-                if add and len (add)==1:
-                    add=add.replace(",","")
-                elif len(add)>1:
-                    add="".join(add)
-                print (add)     
+                if add!=None:
+                    if add and len (add)==1:
+                        add=add.replace(",","")
+                    elif len(add)>1:
+                        add="".join(add)
+                    print (add)     
                 
                 name="".join(name)
                 print (name)
