@@ -366,9 +366,13 @@ def result(request):
                 obj.registrar=registrar
                 obj.save()
 
+                print (add)
             
-                if add:
+                if add and len (add)==1:
                     add=add.replace(",","")
+                elif len(add)>1:
+                    add="".join(add)
+                print (add)     
                 
                 name="".join(name)
                 print (name)
@@ -396,7 +400,7 @@ def result(request):
                         ziip,
                         country,emails,
                         str(dom),rank,str(registrar))
-                    res.write(s)
+                    res.write(s)      
 
                 return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                         'org':org,
