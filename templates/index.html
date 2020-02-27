@@ -15,6 +15,7 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet">
   <link rel="icon" href="{%static '46-512.png' %}" type="image/png">
   <title>{% block title %}Malicious Url Detector{% endblock %}</title>
+
 </head>
 
 <body>
@@ -29,7 +30,8 @@
     width: 100%;
     z-index: 99;">
   </div>
-  <div class="spinner-border" role="status" style="background-color: white;position: absolute;left: 50%;top: 50%;z-index: 100;">
+  
+  <div class="spinner-border" role="status" style="background-color: white;position: absolute;left: 50%;top: 50%;z-index: 100;color:#b3e6ff;">
     <span class="sr-only">Loading...</span>
   </div>
   <nav class="navbar navbar-expand-lg navbar-light white">
@@ -165,6 +167,7 @@
 
                 preloader1.fadeOut(preloaderFadeOutTime);
                 preloader2.fadeOut(preloaderFadeOutTime);
+
 
             }
             hidePreloader();
