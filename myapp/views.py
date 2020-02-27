@@ -366,26 +366,26 @@ def result(request):
                 obj.registrar=registrar
                 obj.save()
 
-                print (add)
+                #print (add)
                 if add!=None:
                     if add and len (add)==1:
                         add=add.replace(",","")
                     elif len(add)>1:
                         add="".join(add)
-                    print (add)     
+                    #print (add)     
                 
                 name="".join(name)
-                print (name)
+                #print (name)
                 if emails!=None:
                     emails="".join(emails)
                 if org!=None:    
                     org=org.replace(",","")
-                print (org)
+                #print (org)
                 dom="".join(dom)
-                print (dom)
+                #print (dom)
                 if registrar:
                     registrar=registrar.replace(",","")
-                print (registrar)
+                #print (registrar)
                 #print (emails)
                 #print(city)
 
