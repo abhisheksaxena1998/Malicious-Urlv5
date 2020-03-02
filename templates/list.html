@@ -19,31 +19,29 @@
         <div class="card-body">
 
           <!-- Title -->
-          <h4 class="card-title" style="text-align: center;">{{url.link}}</h4>
+          <h6 class="card-title" style="text-align: center;"><a href="{{url.link}}" >{{url.link}}</a></h6>
           <!-- Text -->
-          <p class="card-text">Result {{url.result}}</p>
+          <p class="card-text">Result :  {{url.result}}</p>
           <!-- Button -->
-          <p class="card-text">Address {{url.add}}</p>
+          <p class="card-text">Address :  {{url.add}}</p>
 
-          <p class="card-text">Organization {{url.org}}</p>
+          <p class="card-text">Organization :  {{url.org}}</p>
 
-          <p class="card-text">State {{url.state}}</p>
+          <p class="card-text">State :  {{url.state}}</p>
 
-          <p class="card-text">City {{url.city}}</p>
+          <p class="card-text">City :  {{url.city}}</p>
 
-          <p class="card-text">County {{url.country}}</p>
+          <p class="card-text">Country :  {{url.country}}</p>
 
-          <p class="card-text">Result {{url.country}}</p>
+          <p class="card-text">Domain :  {{url.dom}}</p>
 
-          <p class="card-text">Domain {{url.dom}}</p>
+          <p class="card-text">Emails :  {{url.emails}}</p>
 
-          <p class="card-text">Emails {{url.emails}}</p>
+          <p class="card-text">Rank :  {{url.rank}}</p>
 
-          <p class="card-text">Rank {{url.rank}}</p>
+          <p class="card-text">Registrar :  {{url.registrar}}</p>
 
-          <p class="card-text">Registrar {{url.registrar}}</p>
-
-          <p class="card-text">Created {{url.created_at}}</p>
+          <p class="card-text">Created at :  {{url.created_at}}</p>
         </div>
       </div>
       {% endfor %}
