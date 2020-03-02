@@ -726,7 +726,7 @@ def about(request):
 def geturlhistory(request):
     try:
         mydict = {
-            "urls" : Url.objects.all()
+            "urls" : Url.objects.all().order_by('-created_at')
         }
         return render(request,'list.html',context=mydict)
     except:
@@ -749,7 +749,7 @@ def search(request):
             "urls" : Url.objects.all().filter(Q(link__contains=query) | Q(result__contains=query) | Q(created_at__contains=query) |
             Q(rank__contains=query) | Q(dom__contains=query)  | Q(country__contains=query) | Q(state__contains=query) | Q(emails__contains=query) |
             Q(add__contains=query) | Q(org__contains=query) | Q(city__contains=query)
-            )
+            ).order_by('-created_at')
         }
         return render(request,'list.html',context=mydict)
     except:

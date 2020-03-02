@@ -3,55 +3,50 @@
 {% block content %}
 
 <div class="container-fluid" style="margin-top: 1rem;">
-    <div class="row">
-        <div class="col-md-12">
-            <form action="{% url 'search' %}" method="GET">
-            <input type="text" id="search" name="search" class="form-control mb-4" placeholder="Search" autocomplete="off">
-            <button type="submit" class="btn btn-primary" style="display: block;margin: 0 auto;">Search</button>
-        </form>
-        </div>
+  <div class="row">
+    <div class="col-md-12">
+      <form action="{% url 'search' %}" method="GET">
+        <input type="text" id="search" name="search" class="form-control mb-4" placeholder="Search" autocomplete="off">
+        <button type="submit" class="btn btn-primary" style="display: block;margin: 0 auto;">Search</button>
+      </form>
     </div>
-    <div class="row" style="margin-bottom: 5rem;">
-        <div class="col-md-12 table-responsive" style="margin: 0 auto;">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Url</th>
-                    <th scope="col">Result</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Organisation</th>
-                    <th scope="col">City</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Country</th>
-                    <th scope="col">Domain</th>
-                    <th scope="col">Emails</th>
-                    <th scope="col">Alexa Rank</th>
-                    <th scope="col">Registrar</th>
-                    <th scope="col">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for url in urls %}
-                  <tr>
-                    <th scope="row">{{url.urlid}}</th>
-                    <td>{{url.link}}</td>
-                    <td>{{url.result}}</td>
-                    <td>{{url.add}}</td>
-                    <td>{{url.org}}</td>
-                    <td>{{url.city}}</td>
-                    <td>{{url.state}}</td>
-                    <td>{{url.country}}</td>
-                    <td>{{url.dom}}</td>
-                    <td>{{url.emails}}</td>
-                    <td>{{url.rank}}</td>  
-                    <td>{{url.registrar}}</td>                    
-                    <td>{{url.created_at}}</td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
+  </div>
+  <div class="row" style="margin-bottom: 7rem;margin-top: 1rem;">
+    <div class="col-md-6 " style="margin: 0 auto;">
+      {% for url in urls %}
+      <!-- Card -->
+      <div class="card">
+        <div class="card-body">
+
+          <!-- Title -->
+          <h4 class="card-title" style="text-align: center;">{{url.link}}</h4>
+          <!-- Text -->
+          <p class="card-text">Result {{url.result}}</p>
+          <!-- Button -->
+          <p class="card-text">Address {{url.add}}</p>
+
+          <p class="card-text">Organization {{url.org}}</p>
+
+          <p class="card-text">State {{url.state}}</p>
+
+          <p class="card-text">City {{url.city}}</p>
+
+          <p class="card-text">County {{url.country}}</p>
+
+          <p class="card-text">Result {{url.country}}</p>
+
+          <p class="card-text">Domain {{url.dom}}</p>
+
+          <p class="card-text">Emails {{url.emails}}</p>
+
+          <p class="card-text">Rank {{url.rank}}</p>
+
+          <p class="card-text">Registrar {{url.registrar}}</p>
+
+          <p class="card-text">Created {{url.created_at}}</p>
         </div>
+      </div>
+      {% endfor %}
     </div>
-</div>
-{% endblock %}
+  </div>
+  {% endblock %}
