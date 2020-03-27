@@ -11,4 +11,10 @@ Life is dependent mainly on internet in todays life for moving business online, 
 2.	Inside Malicious-Urlv5 there is a file requirements.txt
 3.	Open command prompt in Malicious-Urlv5 folder
 
-![GitHub Logo](/Images/img1.png)
+    ![How to install](/Images/img1.png)
+
+4. Type following command in cmd
+
+    ![How to install](/Images/img2.png)
+    
+  
