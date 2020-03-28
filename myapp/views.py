@@ -66,7 +66,8 @@ def result(request):
         #nm=request.GET['url']
     
         text=request.GET['url']
-
+        if not text.startswith('http'):
+            return render(request,"404.html")
         if text.startswith('https://malicious-url-detectorv5.herokuapp.com/')  :
             return render(request,'result.html',{'result':'Real-time analysis successfull','f2':'Legtimate','mal': True,'text':text,'name':"The Legions",
                         'org':"The Legions",
@@ -401,7 +402,7 @@ def result(request):
                         country,emails,
                         str(dom),rank,str(registrar))
                     res.write(s)      
-
+            
                 return render(request,'result.html',{'result':'Real-time analysis successfull','f2':te,'mal': mal,'text':text,'name':name,
                         'org':org,
                         'add':add,
