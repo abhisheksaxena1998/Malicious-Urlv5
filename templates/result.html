@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-md-6" style="margin: 1rem auto 0 auto;">
             {% if mal %}
+
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Legitimate Url</strong>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -57,7 +58,9 @@
                         <!-- Card -->
                     </div>
                 </div>
-
+                <script>
+                    Swal.fire('This url looks safe')
+                </script>
                 
                 {% else %}
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
