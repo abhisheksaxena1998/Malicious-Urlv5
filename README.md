@@ -26,7 +26,7 @@ https://wallpapersite.com/abstract/ | Legitimate
 https://www.freepik.com/free-vector | Legitimate
 
 
-## Installation Guide
+## Installation Guide.
 
 1.	Extract Malicious-Urlv5 zip file.
 2.	Inside Malicious-Urlv5 there is a file requirements.txt
