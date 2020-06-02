@@ -67,7 +67,12 @@
                     </div>
                 </div>
                 <script>
-                    Swal.fire('This url looks safe');
+                    Swal.fire({
+  icon: 'success',
+  title: 'Congrats,This Url is Safe',
+  showConfirmButton: false,
+  timer: 1500
+});
                 </script>
                 
                 {% else %}
@@ -127,7 +132,12 @@
                         </div>
                     </div>
                     <script>
-                        Swal.fire('This url does not seems to be safe');
+                        Swal.fire({
+  icon: 'error',
+  title: 'Malicious Url Detected',
+  text: 'Something seems wrong',
+  footer: 'Danger'
+});
                     </script>
                     {% endif %}
                 </div>
