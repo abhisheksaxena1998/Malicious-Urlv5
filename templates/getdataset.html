@@ -29,8 +29,9 @@
             {% load static %}
             <a href="{% static 'dataset.csv' %}" class="btn btn-success" download style="margin:0rem auto 5rem auto;">Download</a>
             <a href="{% url 'index' %}" style="margin:0rem auto 5rem auto;" class="btn btn-primary">Go Back Home</a>
-            <a href="whatsapp://send?text=%0aYou Requested for our live dataset%0aStay connected with our app%0aMalicous Url Detector%0ahttps://malicious-url-detectorv5.herokuapp.com/getdataset" class="btn btn-success btn-rounded" style="margin:0rem auto 5rem auto;">Share By whatsapp</a>
-
+            <a href="whatsapp://send?text=%0aYour Request for our Dataset has been accepted%0a%0a-Malicious URL Detector%0ahttps://malicious-url-detectorv5.herokuapp.com/getdataset" class="btn btn-success btn-rounded" style="margin:0rem auto 5rem auto;">Share By Whatsapp</a>
+            <a href="mailto:?subject=%0aYour Request for our Dataset has been accepted&amp;body=Your Request for our Dataset has been accepted%0A%0Ahttps://malicious-url-detectorv5.herokuapp.com/getdataset%0A%0a%0a" title="Share by Email" class="btn btn-success btn-rounded" style="margin:0rem auto 5rem auto;">Share by e-mail</a>
+                
         </div>
 
     </div>
