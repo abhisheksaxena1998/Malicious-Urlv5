@@ -67,12 +67,11 @@
                     </div>
                 </div>
                 <script>
-                    Swal.fire({
-  icon: 'success',
-  title: 'Congrats,This Url is Safe',
-  showConfirmButton: false,
-  timer: 1500
-});
+                   Swal.fire(
+  'This url looks safe!',
+  'Go Ahead !',
+  'success'
+)
                 </script>
                 
                 {% else %}

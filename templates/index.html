@@ -22,7 +22,7 @@
 
 </head>
 
-<body style="background-image: url(/static/bg2.jpg)">
+<body style="background-image: url(/static/bg2.jpg);margin-bottom: 30rem;">
   <!--Navbar-->
   <div class="card" id="card" style="
     background-color: black;
@@ -49,7 +49,7 @@
     </button>
 
     <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="basicExampleNav">
+    <div class="collapse navbar-collapse" id="basicExampleNav" style="font-size: 1rem;">
 
       <!-- Links -->
       <ul class="navbar-nav mr-auto">
@@ -75,6 +75,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% static 'chrome-ext.zip' %}" download>Download Our Chrome Extension</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'namedoc' %}">Get Video and PPT</a>
         </li>
       </ul>
       <!-- Links -->

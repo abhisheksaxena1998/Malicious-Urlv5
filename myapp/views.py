@@ -14,6 +14,9 @@ from .models import *
 def error_404_view(request, exception):
     return render(request,'404.html')
 
+def getdoc(request):
+    return render(request,'ppt.html')
+    
 def index(request):
     try:
         return render(request, 'index.html')
