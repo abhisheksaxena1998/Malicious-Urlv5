@@ -29,7 +29,10 @@
             {% load static %}
             <a href="{% static 'dataset.csv' %}" class="btn btn-success" download style="margin:0rem auto 5rem auto;">Download</a>
             <a href="{% url 'index' %}" style="margin:0rem auto 5rem auto;" class="btn btn-primary">Go Back Home</a>
+            <a href="whatsapp://send?text=%0aYou Requested for our live dataset%0aStay connected with our app%0aMalicous Url Detector%0ahttps://malicious-url-detectorv5.herokuapp.com/getdataset" class="btn btn-success btn-rounded" style="margin:0rem auto 5rem auto;">Share By whatsapp</a>
+
         </div>
+
     </div>
 </div>
 {% endblock %}
