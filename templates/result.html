@@ -131,12 +131,11 @@
                         </div>
                     </div>
                     <script>
-                        Swal.fire({
-  icon: 'error',
-  title: 'Malicious Url Detected',
-  text: 'Something seems wrong',
-  footer: 'Danger'
-});
+                        Swal.fire(
+                        'Phishing Detected !',
+      'You are safe :)',
+      'error'
+)
                     </script>
                     {% endif %}
                 </div>
