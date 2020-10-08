@@ -25,3 +25,5 @@ class Url(models.Model):
     #rank = models.CharField(max_length=100,null=True,default="N A",blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Result(models.Model):
+    pass
