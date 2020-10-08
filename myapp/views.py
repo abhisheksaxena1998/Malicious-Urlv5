@@ -10,6 +10,8 @@ from .models import *
 
 
 # Create your views here.
+def getServerStatus(request):
+    return HttpResponse(request)
 
 def error_404_view(request, exception):
     return render(request,'404.html')
