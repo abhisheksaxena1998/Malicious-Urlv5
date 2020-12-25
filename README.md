@@ -5,9 +5,7 @@
 
 [![Concept Video](https://img.youtube.com/vi/-6fd996HWrQ/0.jpg)](https://www.youtube.com/watch?v=-6fd996HWrQ)  
 
-##  Updated Application at:
-
-https://mudvfinalradar.eu-gb.cf.appdomain.cloud/
+####  Updated Application at:   https://mudvfinalradar.eu-gb.cf.appdomain.cloud/
 
 This application is live at https://malicious-url-detectorv5.herokuapp.com/
 
